@@ -1,7 +1,7 @@
 export default function Home() {
   return (
-    <>
-      <div>home</div>
-    </>
+    <main className="container relative">
+      <div className=" font-bold text-4xl">ssssssssss</div>
+    </main>
   );
 }
