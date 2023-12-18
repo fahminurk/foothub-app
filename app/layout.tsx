@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Toaster } from "sonner";
-import QueryProvider from "@/providers/QueryProvider";
+import QueryProvider from "@/components/providers/QueryProvider";
 import dynamic from "next/dynamic";
 import { fontSans } from "@/lib/fonts";
 import { cn } from "@/lib/utils";
@@ -28,7 +28,7 @@ export default function RootLayout({
         <body
           className={cn(
             "min-h-screen bg-background font-sans antialiased",
-            fontSans.variable
+            fontSans.className
           )}
         >
           <div className="relative flex min-h-screen flex-col">
