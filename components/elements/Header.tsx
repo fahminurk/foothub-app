@@ -24,7 +24,7 @@ const Header = () => {
   const router = useRouter();
 
   return (
-    <div className="sticky top-0 z-50 flex p-4 justify-between items-center bg-background/40 border-b backdrop-blur">
+    <div className="sticky top-0 z-50 flex p-4 justify-between items-center bg-background/70 border-b backdrop-blur">
       <Button
         // onClick={toggleSheetOpen}
         className="rounded-full md:hidden"
