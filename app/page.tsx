@@ -1,10 +1,11 @@
 "use client";
-import PromotionBanner from "@/features/home/components/PromotionBanner";
+import PromotionBanner from "@/components/PromotionBanner";
 import { category, homeText } from "@/constant";
-import { fontMono } from "@/lib/fonts";
 import gsap from "gsap";
 import { FaArrowRight } from "react-icons/fa";
 import Link from "next/link";
+import AdidasBanner from "@/components/AdidasBanner";
+import BestOfCarousel from "@/components/BestOfCarousel";
 import { Button } from "@/components/ui/button";
 
 export default function Home() {
@@ -25,7 +26,7 @@ export default function Home() {
   };
 
   return (
-    <main className="container flex flex-col gap-3 relative pb-3">
+    <main className="container flex flex-col gap-9 relative pb-3">
       <div className="flex h-[90vh] items-center">
         <div className="relative w-full">
           {homeText.map((item, i) => {
@@ -45,36 +46,23 @@ export default function Home() {
         </div>
       </div>
       <PromotionBanner />
-      {/*  */}
-      <div className="relative flex flex-1">
-        <img
-          src="/images/adidas-banner.webp"
-          alt="adidas"
-          className="h-80 md:h-auto object-cover"
-        />
-        <div className="absolute text-white bottom-0 gap-2 px-4 flex flex-col w-full h-full justify-center">
-          <p className="text-2xl md:text-4xl font-bold">
-            MAKE YOUR SAMBA COUNT
-          </p>
-          <p className="text-sm md:text-xl">{`Here's my Samba retreat. What's yours?`}</p>
-          <div>
-            <Button className="bg-white text-black">Shop Now</Button>
-          </div>
-        </div>
+      <AdidasBanner />
+      <div className="flex flex-col gap-3">
+        <div className="text-4xl font-bold">BEST OF</div>
+        <BestOfCarousel />
       </div>
-      {/*  */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
         {category.map((item, i) => (
           <Link
             href={"/"}
             key={i}
-            className=" overflow-hidden h-[400px] md:h-[500px] group "
+            className=" overflow-hidden h-[450px] md:h-[500px] group "
           >
             <div className="relative group-hover:-translate-y-full duration-500">
               <img
                 src={item.image}
                 alt={item.title}
-                className="w-full h-[400px] md:h-[500px] object-cover grayscale group-hover:-translate-y-full duration-500"
+                className="w-full h-[450px] md:h-[500px] object-cover grayscale group-hover:-translate-y-full duration-500"
               />
               <div className="absolute text-[2rem] text-white top-0 w-full h-full flex justify-center items-center">
                 <p className="font-bold ">{item.title}</p>
@@ -85,7 +73,7 @@ export default function Home() {
               <img
                 src={item.image}
                 alt={item.title}
-                className="w-full h-[400px] md:h-[500px] object-cover"
+                className="w-full h-[450px] md:h-[500px] object-cover"
               />
               <div className="absolute text-[2rem]  top-0 w-full h-full flex justify-center items-center">
                 <div className="flex items-center text-white">

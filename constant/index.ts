@@ -67,3 +67,18 @@ export const homeText = [
     color: "#8C0CF0",
   },
 ];
+
+export const BestOfShoe = [
+  {
+    name: "Adidas Campus 80s",
+    img: "/shoes/adidas-campus-80s.jpg",
+  },
+  {
+    name: "Adidas Rivalry Low",
+    img: "/shoes/adidas-rivalry-low.webp",
+  },
+  {
+    name: "Nike Air Force 1'07",
+    img: "/shoes/nike-air-force-1'07.webp",
+  },
+];

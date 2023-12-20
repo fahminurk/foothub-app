@@ -19,7 +19,7 @@ const PromotionBanner = () => {
       }}
       pagination={true}
       modules={[Autoplay, Navigation, Pagination]}
-      className={`mySwiper w-full relative`}
+      className={` w-full relative`}
     >
       <SwiperButtonPrev />
       <SwiperSlide className="bg-neutral-800 h-full">

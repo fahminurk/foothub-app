@@ -6,7 +6,7 @@ const SwiperButtonNext = () => {
   const swiper = useSwiper();
   return (
     <Button
-      className={`my-swiper-button-prev hidden border bg-white hover:bg-white/70 rounded-full w-10 h-10 absolute top-[45%] right-4 z-10 justify-center items-center md:flex`}
+      className={`my-swiper-button-prev  border bg-white hover:bg-white/70 rounded-full w-10 h-10 absolute top-[45%] right-4 z-10 justify-center items-center md:flex`}
       onClick={() => swiper.slideNext()}
       size={"sm"}
     >
