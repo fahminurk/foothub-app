@@ -9,6 +9,7 @@ import { cn } from "@/lib/utils";
 //   ssr: false,
 // });
 import Header from "@/components/elements/Header";
+import Footer from "@/components/elements/Footer";
 
 export const metadata: Metadata = {
   title: "Foothub",
@@ -34,6 +35,7 @@ export default function RootLayout({
           <div className="relative flex min-h-screen flex-col">
             <Header />
             {children}
+            <Footer />
           </div>
         </body>
       </QueryProvider>
