@@ -1,3 +1,18 @@
+export const category = [
+  {
+    title: "MEN",
+    image: "/images/men.jpeg",
+  },
+  {
+    title: "Women",
+    image: "/images/women.webp",
+  },
+  {
+    title: "KID",
+    image: "/images/kid.jpeg",
+  },
+];
+
 export const brands = [
   {
     title: "Adidas",
