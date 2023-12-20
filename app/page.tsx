@@ -3,7 +3,6 @@ import PromotionBanner from "@/features/home/components/PromotionBanner";
 import { category, homeText } from "@/constant";
 import { fontMono } from "@/lib/fonts";
 import gsap from "gsap";
-import CategorySection from "@/features/home/components/CategorySection";
 import { FaArrowRight } from "react-icons/fa";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
