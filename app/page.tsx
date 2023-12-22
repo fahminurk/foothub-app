@@ -27,7 +27,7 @@ export default function Home() {
 
   return (
     <main className="container flex flex-col gap-9 relative pb-3">
-      <div className="flex h-[90vh] items-center">
+      <div className="flex h-[50vh] sm:h-[90vh] items-center">
         <div className="relative w-full">
           {homeText.map((item, i) => {
             return (
@@ -56,13 +56,13 @@ export default function Home() {
           <Link
             href={"/"}
             key={i}
-            className=" overflow-hidden h-[450px] md:h-[500px] group "
+            className=" overflow-hidden h-[370px] md:h-[500px] group "
           >
             <div className="relative group-hover:-translate-y-full duration-500">
               <img
                 src={item.image}
                 alt={item.title}
-                className="w-full h-[450px] md:h-[500px] object-cover grayscale group-hover:-translate-y-full duration-500"
+                className="w-full h-[370px] md:h-[500px] object-cover grayscale group-hover:-translate-y-full duration-500"
               />
               <div className="absolute text-[2rem] text-white top-0 w-full h-full flex justify-center items-center">
                 <p className="font-bold ">{item.title}</p>
@@ -73,7 +73,7 @@ export default function Home() {
               <img
                 src={item.image}
                 alt={item.title}
-                className="w-full h-[450px] md:h-[500px] object-cover"
+                className="w-full h-[370px] md:h-[500px] object-cover"
               />
               <div className="absolute text-[2rem]  top-0 w-full h-full flex justify-center items-center">
                 <div className="flex items-center text-white">
