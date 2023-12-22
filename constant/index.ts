@@ -2,44 +2,50 @@ export const category = [
   {
     title: "MEN",
     image: "/images/men.jpeg",
+    href: "/men",
   },
   {
     title: "Women",
     image: "/images/women.webp",
+    href: "/women",
   },
   {
     title: "KID",
     image: "/images/kid.jpeg",
+    href: "/kid",
   },
 ];
 
 export const brands = [
   {
     title: "Adidas",
-    href: "/",
+    href: "/adidas",
+    img: "/images/adidas-logo.jpeg",
   },
   {
     title: "Nike",
-    href: "/",
+    href: "/nike",
+    img: "/images/nike-logo.jpeg",
   },
   {
     title: "Converse",
-    href: "/",
+    href: "/converse",
+    img: "/images/converse-logo.jpeg",
   },
 ];
 
 export const subcategory = [
   {
     title: "Casual",
-    href: "/",
+    href: "/casual",
   },
   {
     title: "Running",
-    href: "/",
+    href: "/running",
   },
   {
     title: "Basketball",
-    href: "/",
+    href: "/basketball",
   },
 ];
 
