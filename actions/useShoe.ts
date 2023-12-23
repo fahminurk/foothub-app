@@ -24,3 +24,10 @@ export const useShoeQuery = (query?: {
         .then((res) => res.data),
   });
 };
+
+export const useShoeDetailQuery = (id: string): UseQueryResult<any, Error> => {
+  return useQuery<any, Error>({
+    queryKey: ["shoe", id],
+    queryFn: () => api.get(`/shoe/${id}`).then((res) => res.data),
+  });
+};
