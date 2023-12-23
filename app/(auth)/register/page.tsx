@@ -19,6 +19,8 @@ import { useStore } from "@/store";
 import { useRouter } from "next/navigation";
 import { Separator } from "@/components/ui/separator";
 import Link from "next/link";
+import { toast } from "sonner";
+import { AxiosError } from "axios";
 
 const formSchema = z.object({
   email: z.string().email(),
@@ -53,8 +55,11 @@ const Page = () => {
       const user = res.data.user;
       const accessToken = res.data.accessToken;
       onAuthSuccess({ user, accessToken });
+      toast.success("Register success");
       router.push("/");
     } catch (error) {
+      const err = error as AxiosError<{ message: string }>;
+      toast.error(err.response?.data.message || err.message);
       console.log(error);
     }
   }
