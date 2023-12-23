@@ -1,7 +1,6 @@
 "use client";
 import Link from "next/link";
 import { Button } from "../ui/button";
-import { IoMenu } from "react-icons/io5";
 import { useStore } from "@/store";
 import { AvatarDropdown } from "./AvatarDropdown";
 import { FiShoppingCart } from "react-icons/fi";
@@ -9,6 +8,7 @@ import { IoSearch } from "react-icons/io5";
 import { useRouter } from "next/navigation";
 import { Input } from "../ui/input";
 import HeaderNavigationMenu from "./HeaderNavigationMenu";
+import BurgerMenu from "./BurgerMenu";
 
 const Header = () => {
   const { user } = useStore();
@@ -16,9 +16,7 @@ const Header = () => {
 
   return (
     <div className="sticky -top-1 z-50 flex p-4 justify-between items-center bg-background/70 border-b backdrop-blur">
-      <Button className="rounded-full md:hidden" variant="ghost" size="icon">
-        <IoMenu className="h-5 w-5" />
-      </Button>
+      <BurgerMenu />
       <Link
         href={"/"}
         className="text-xl font-bold translate-x-6 md:translate-x-0"
@@ -29,7 +27,11 @@ const Header = () => {
 
       <div className="flex gap-1">
         <Input className="hidden lg:block" />
-        <Button className="rounded-full lg:hidden" variant="ghost" size="icon">
+        <Button
+          className="rounded-full hidden md:block lg:hidden"
+          variant="ghost"
+          size="icon"
+        >
           <IoSearch className="h-5 w-5" />
         </Button>
 
