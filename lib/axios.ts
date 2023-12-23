@@ -2,7 +2,10 @@ import axios, { AxiosHeaders } from "axios";
 import { useStore } from "@/store";
 
 const api = axios.create({
-  baseURL: "http://localhost:8000",
+  baseURL:
+    process.env.NODE_ENV === "development"
+      ? process.env.NEXT_PUBLIC_API_URL_DEV
+      : process.env.NEXT_PUBLIC_API_URL_DEV,
 });
 
 api.interceptors.request.use((config) => {
