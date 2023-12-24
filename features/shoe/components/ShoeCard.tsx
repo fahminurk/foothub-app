@@ -1,30 +1,17 @@
 import { AspectRatio } from "@/components/ui/aspect-ratio";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { formatToIDR } from "@/lib/utils";
+import { TShoe } from "@/types";
 import Image from "next/image";
 
 type ShoeCardProps = {
-  item: {
-    id: number;
-    name: string;
-    price: number;
-    shoeImage: {
-      imgUrl: string;
-    }[];
-  };
+  item: TShoe;
 };
 
 const ShoeCard: React.FC<ShoeCardProps> = ({ item }) => {
   return (
-    <Card>
+    <Card className="">
       <CardContent className="p-0">
         <AspectRatio>
           <Image
@@ -37,8 +24,12 @@ const ShoeCard: React.FC<ShoeCardProps> = ({ item }) => {
       </CardContent>
       <CardFooter className="p-0">
         <div className="p-1 flex flex-col w-full gap-1">
-          <p className="font-semibold truncate overflow-ellipsis">
+          <p className="font-semibold truncate text-sm sm:text-lg">
             {item.name.toUpperCase()}
+          </p>
+          <Separator />
+          <p className="text-xs">
+            {item.category.name} • {item.subCategory.name}
           </p>
           <Separator />
           <p className="text-sm">{formatToIDR(item.price)}</p>

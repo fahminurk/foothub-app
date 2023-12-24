@@ -11,6 +11,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import Link from "next/link";
+import { Separator } from "@/components/ui/separator";
 
 const Page = () => {
   const [orderBy, setOrderBy] = useState("asc");
@@ -19,10 +20,10 @@ const Page = () => {
   const { data, isFetching } = useShoeQuery({ orderBy, sortBy });
 
   return (
-    <div className="container flex flex-col gap-2 my-2">
-      <div className="sticky top-[68px] z-10 border-b bg-white flex justify-between items-center gap-2 py-2 ">
+    <div className="container h-auto flex flex-col gap-2 my-2">
+      <div className="sticky top-[68px] z-10 bg-white flex justify-between items-center gap-2 py-2 ">
         <div className="flex flex-col">
-          <p className="text-2xl font-bold">SHOES</p>
+          <p className="text-lg md:text-2xl lg:text-4xl font-bold">SHOES</p>
           <div className="flex gap-1 text-sm">
             <p>{data && data?.length ? `${data?.length}` : "0"}</p>
             <p>{data && data?.length > 1 ? "items" : "item"}</p>
@@ -47,6 +48,7 @@ const Page = () => {
           </SelectContent>
         </Select>
       </div>
+      <Separator />
       {isFetching ? (
         <div className="flex justify-center items-center h-[80vh]">loading</div>
       ) : data && data.length ? (

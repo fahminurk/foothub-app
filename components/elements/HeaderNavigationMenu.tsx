@@ -94,11 +94,12 @@ const HeaderNavigationMenu = () => {
           </NavigationMenuContent>
         </NavigationMenuItem>
 
-        <NavigationMenuItem className="py-2 w-14 pl-4 rounded-md hover:bg-white/70 cursor-pointer">
-          <Link href={"/shoe"} passHref legacyBehavior>
-            <NavigationMenuLink>All</NavigationMenuLink>
-          </Link>
-        </NavigationMenuItem>
+        <Link
+          href={"/shoe"}
+          className="p-2 w-14 pl-4 rounded-md hover:bg-gray-100 cursor-pointer"
+        >
+          All
+        </Link>
       </NavigationMenuList>
     </NavigationMenu>
   );

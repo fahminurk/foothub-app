@@ -2,11 +2,9 @@ import React, { useState } from "react";
 import { Button } from "../ui/button";
 import {
   Drawer,
-  DrawerClose,
   DrawerContent,
   DrawerFooter,
   DrawerHeader,
-  DrawerTitle,
   DrawerTrigger,
 } from "@/components/ui/drawer";
 import {
@@ -43,7 +41,7 @@ const BurgerMenu = () => {
             search
           </Button>
         </DrawerHeader>
-        <DrawerFooter>
+        <DrawerFooter className="gap-0">
           <Accordion type="single" collapsible className="w-full">
             <AccordionItem value="item-1">
               <AccordionTrigger className="font-bold">BRANDS</AccordionTrigger>
@@ -113,6 +111,13 @@ const BurgerMenu = () => {
               </AccordionContent>
             </AccordionItem>
           </Accordion>
+          <Link
+            href={"/shoe"}
+            className="py-3 font-bold hover:underline"
+            onClick={() => setOpen(false)}
+          >
+            ALL
+          </Link>
         </DrawerFooter>
       </DrawerContent>
     </Drawer>
