@@ -10,6 +10,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import Link from "next/link";
+import { Separator } from "@/components/ui/separator";
 
 const Page = ({ params }: { params: { slug: string[] } }) => {
   const { slug } = params;
@@ -25,11 +26,11 @@ const Page = ({ params }: { params: { slug: string[] } }) => {
   });
 
   return (
-    <div className="container h-screen flex flex-col gap-2 my-2">
-      <div className="sticky top-[68px] z-10 border-b bg-white flex justify-between items-center gap-2 py-2 ">
+    <div className="container flex flex-col gap-2 my-2">
+      <div className="sticky top-[68px] z-10  bg-white flex justify-between items-center gap-2 py-2 ">
         <div className="flex flex-col">
-          <div className="flex gap-2 text-2xl font-bold">
-            <p className=""> {slug[0].toUpperCase()}</p>
+          <div className="flex gap-2 text-lg md:text-2xl lg:text-4xl font-bold">
+            <p> {slug[0].toUpperCase()}</p>
             {slug[1] && <p>/ {slug[1].toUpperCase()}</p>}
           </div>
           <div className="flex gap-2 text-sm">
@@ -56,10 +57,11 @@ const Page = ({ params }: { params: { slug: string[] } }) => {
           </SelectContent>
         </Select>
       </div>
+      <Separator />
       {isFetching ? (
         <div className="flex justify-center items-center h-[80vh]">loading</div>
       ) : data && data.length ? (
-        <div className="gap-2 md:gap-4 lg:gap-6 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 w-full">
+        <div className="gap-2 md:gap-4 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 w-full">
           {data?.map((item) => (
             <Link href={`/shoe/${item.id}`} key={item.id}>
               <ShoeCard item={item} />
