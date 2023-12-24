@@ -1,4 +1,6 @@
 import { StateCreator } from "zustand";
+import { create } from "zustand";
+import { persist } from "zustand/middleware";
 
 enum Roles {
   USER = "USER",
@@ -42,3 +44,25 @@ export const createAuthSlice: StateCreator<AuthSlice, [], [], AuthSlice> = (
     }));
   },
 });
+
+export type IGlobalStore = AuthSlice;
+
+export const STORAGE_KEY = "foothub_storage";
+
+export const useAuthStore = create<
+  IGlobalStore,
+  [["zustand/persist", Pick<IGlobalStore, "accessToken">]]
+>(
+  persist(
+    (...a) => ({
+      ...createAuthSlice(...a),
+    }),
+    {
+      name: STORAGE_KEY,
+      partialize: (state) => ({
+        accessToken: state.accessToken,
+        user: state.user,
+      }),
+    }
+  )
+);
