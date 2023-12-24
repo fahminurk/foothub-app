@@ -8,10 +8,10 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
-import { useStore } from "@/store";
+import { useAuthStore } from "@/store/authStore";
 
 export const AvatarDropdown = () => {
-  const { user, onLogout } = useStore();
+  const { user, onLogout } = useAuthStore();
 
   return (
     <>

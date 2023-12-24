@@ -1,5 +1,5 @@
 import axios, { AxiosHeaders } from "axios";
-import { useStore } from "@/store";
+import { useAuthStore } from "@/store/authStore";
 
 const api = axios.create({
   baseURL:
@@ -10,7 +10,7 @@ const api = axios.create({
 
 api.interceptors.request.use((config) => {
   config.withCredentials = true;
-  const token = useStore.getState().accessToken;
+  const token = useAuthStore.getState().accessToken;
 
   if (token) {
     (config.headers as AxiosHeaders).set("Authorization", `Bearer ${token}`);
