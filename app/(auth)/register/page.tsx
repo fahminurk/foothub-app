@@ -15,12 +15,12 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import api from "@/lib/axios";
-import { useStore } from "@/store";
 import { useRouter } from "next/navigation";
 import { Separator } from "@/components/ui/separator";
 import Link from "next/link";
 import { toast } from "sonner";
 import { AxiosError } from "axios";
+import { useAuthStore } from "@/store/authStore";
 
 const formSchema = z.object({
   email: z.string().email(),
@@ -34,7 +34,7 @@ const formSchema = z.object({
 });
 
 const Page = () => {
-  const { onAuthSuccess, user, accessToken } = useStore();
+  const onAuthSuccess = useAuthStore((state) => state.onAuthSuccess);
   const router = useRouter();
 
   const form = useForm<z.infer<typeof formSchema>>({
