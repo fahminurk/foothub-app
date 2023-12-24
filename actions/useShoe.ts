@@ -1,4 +1,5 @@
 import api from "@/lib/axios";
+import { TShoe, TSizeAndStock } from "@/types";
 import {
   UseQueryResult,
   useMutation,
@@ -13,8 +14,8 @@ export const useShoeQuery = (query?: {
   brand?: string;
   orderBy?: string;
   sortBy?: string;
-}): UseQueryResult<any[] | [], Error> => {
-  return useQuery<any[] | [], Error>({
+}): UseQueryResult<TShoe[] | [], Error> => {
+  return useQuery<TShoe[] | [], Error>({
     queryKey: ["shoes", query],
     queryFn: () =>
       api
@@ -25,8 +26,10 @@ export const useShoeQuery = (query?: {
   });
 };
 
-export const useShoeDetailQuery = (id: string): UseQueryResult<any, Error> => {
-  return useQuery<any, Error>({
+export const useShoeDetailQuery = (
+  id: string
+): UseQueryResult<{ shoe: TShoe; sizeAndStock: TSizeAndStock[] }, Error> => {
+  return useQuery<{ shoe: TShoe; sizeAndStock: TSizeAndStock[] }, Error>({
     queryKey: ["shoe", id],
     queryFn: () => api.get(`/shoe/${id}`).then((res) => res.data),
   });
