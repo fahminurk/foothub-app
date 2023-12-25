@@ -25,7 +25,7 @@ const Header = () => {
       <div className="flex gap-1">
         <Input className="hidden lg:block" />
         <Button
-          className="rounded-full hidden md:block lg:hidden"
+          className="rounded-full hidden md:flex lg:hidden"
           variant="ghost"
           size="icon"
         >
@@ -33,9 +33,14 @@ const Header = () => {
         </Button>
 
         <div>
-          {user?.email ? (
+          {!user?.email ? (
             <div className="flex gap-1">
-              <Button className="rounded-full " variant="ghost" size="icon">
+              <Button
+                onClick={() => router.push("/cart")}
+                className="rounded-full "
+                variant="ghost"
+                size="icon"
+              >
                 <FiShoppingCart className="h-5 w-5" />
               </Button>
               <AvatarDropdown />
