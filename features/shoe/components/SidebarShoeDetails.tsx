@@ -4,13 +4,30 @@ import { formatToIDR } from "@/lib/utils";
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
 import { useAuthStore } from "@/store/authStore";
+import { useCartStore } from "@/store/cartStore";
+import { toast } from "sonner";
 
 const SidebarShoeDetails: React.FC<{
   data: { shoe: TShoe; sizeAndStock: TSizeAndStock[] };
 }> = ({ data }) => {
   const { user } = useAuthStore();
-  const [size, setSize] = useState<string | null>(null);
+  const [size, setSize] = useState<string>("");
   const [stock, setStock] = useState<number | null>(null);
+
+  const { addToCart, cart } = useCartStore();
+
+  const handleCart = (val: TShoe) => {
+    const existingItem = cart.find(
+      (item) => item.size === size && item.name === val.name
+    ) as unknown as boolean;
+
+    if (existingItem) {
+      toast.info("Item already in cart");
+    } else {
+      addToCart({ ...data.shoe, size, qty: 1, totalPrice: data.shoe.price });
+      toast.success("Item added to cart");
+    }
+  };
 
   return (
     <div className="sticky top-16 flex flex-col p-4 h-max lg:h-screen lg:p-10 ">
@@ -46,7 +63,7 @@ const SidebarShoeDetails: React.FC<{
                 variant={size === val.size ? "default" : "outline"}
                 key={val.size}
                 onClick={() => {
-                  size == val.size ? setSize(null) : setSize(val.size);
+                  size == val.size ? setSize("") : setSize(val.size);
                   stock == val.stock ? setStock(null) : setStock(val.stock);
                 }}
                 className=""
@@ -60,7 +77,12 @@ const SidebarShoeDetails: React.FC<{
       </div>
       <Separator />
       <div className="pt-2 w-full">
-        <Button disabled={!user?.email} className="w-full">
+        <Button
+          // disabled={!user?.email}
+
+          className="w-full"
+          onClick={() => handleCart(data.shoe)}
+        >
           ADD TO CART
         </Button>
         {!user?.email && (
