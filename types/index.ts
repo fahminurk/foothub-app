@@ -66,6 +66,6 @@ export type TStock = {
 
 export type TShoeSize = {
   id: number;
-  size: number;
+  size: string;
   stock: TStock[];
 };
