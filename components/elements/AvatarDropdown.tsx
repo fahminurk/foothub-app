@@ -19,9 +19,7 @@ export const AvatarDropdown = () => {
         <DropdownMenuTrigger className="self-start">
           <Avatar className="h-10 w-10">
             <AvatarFallback>{user?.name.charAt(0)}</AvatarFallback>
-            <AvatarImage
-              src={"http://localhost:8000/" + user?.avatarUrl || ""}
-            />
+            <AvatarImage src={user?.avatarUrl} />
           </Avatar>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end" sideOffset={8}>
