@@ -33,7 +33,7 @@ const Header = () => {
         </Button>
 
         <div>
-          {!user?.email ? (
+          {user?.email ? (
             <div className="flex gap-1">
               <Button
                 onClick={() => router.push("/cart")}
