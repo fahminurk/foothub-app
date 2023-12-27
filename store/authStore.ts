@@ -10,6 +10,7 @@ enum Roles {
 type User = {
   id: number;
   name: string;
+  phone: string;
   email: string;
   avatarUrl: string;
   isVerified: boolean;
