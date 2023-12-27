@@ -50,7 +50,6 @@ const Page = () => {
   async function onSubmit(values: z.infer<typeof formSchema>) {
     try {
       const res = await api.post("/auth/register", values);
-      console.log(res);
 
       const user = res.data.user;
       const accessToken = res.data.accessToken;
