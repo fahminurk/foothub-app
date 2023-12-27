@@ -69,3 +69,17 @@ export type TShoeSize = {
   size: string;
   stock: TStock[];
 };
+
+export type TProvince = {
+  province_id: string;
+  province: string;
+};
+
+export type TCity = {
+  city_id: string;
+  city_name: string;
+  province_id: string;
+  province: TProvince;
+  type: string;
+  postcal_code: string;
+};
