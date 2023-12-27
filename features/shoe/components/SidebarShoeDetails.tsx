@@ -30,7 +30,7 @@ const SidebarShoeDetails: React.FC<{
   };
 
   return (
-    <div className="sticky top-16 flex flex-col p-4 h-max lg:h-screen lg:p-10 ">
+    <>
       <div className="flex justify-between pb-2 items-center">
         <p>
           {data.shoe.category.name} • {data.shoe.subCategory.name}
@@ -91,7 +91,7 @@ const SidebarShoeDetails: React.FC<{
           </p>
         )}
       </div>
-    </div>
+    </>
   );
 };
 
