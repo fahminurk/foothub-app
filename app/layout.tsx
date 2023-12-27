@@ -23,22 +23,21 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <head />
-      <QueryProvider>
-        <Toaster />
-        <body
-          className={cn(
-            "min-h-screen bg-background font-sans antialiased",
-            fontSans.className
-          )}
-        >
+      <Toaster />
+      <body
+        className={cn(
+          "min-h-screen bg-background font-sans antialiased",
+          fontSans.className
+        )}
+      >
+        <QueryProvider>
           <div className="relative flex min-h-screen flex-col">
             <Header />
             {children}
             <Footer />
           </div>
-        </body>
-      </QueryProvider>
+        </QueryProvider>
+      </body>
     </html>
   );
 }
