@@ -5,6 +5,7 @@ import { formatToIDR } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { useCartStore } from "@/store/cartStore";
 import { Input } from "@/components/ui/input";
+import SidebarCart from "@/features/cart/components/SidebarCart";
 
 const Page = () => {
   const {
@@ -15,11 +16,10 @@ const Page = () => {
     decrementItem,
     removeItem,
   } = useCartStore();
-  console.log(cart);
 
   return (
-    <div className="container flex flex-col gap-2 my-4">
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-2">
+    <div className="container flex flex-col gap-2 my-4 ">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-2 min-h-screen">
         <div className="flex flex-col gap-3 col-span-2 lg:p-2 lg:border-r ">
           <div className="flex justify-between">
             <div>
@@ -93,26 +93,7 @@ const Page = () => {
         </div>
         {/* sidebar cart */}
         <div className="sticky top-20 flex flex-col gap-2 h-max lg:p-2">
-          <p className="font-bold text-2xl md:text-4xl">ORDER SUMMARY</p>
-          <div>
-            <div className="flex gap-1 py-3 border-b">
-              <p>{totalItem}</p>
-              <p>{totalItem > 1 ? "items" : "item"}</p>
-            </div>
-            <div className="flex justify-between py-2 border-b">
-              <p>Subtotal</p>
-              <p>{formatToIDR(subTotal)}</p>
-            </div>
-            <div className="flex justify-between py-2 border-b">
-              <p>Delivery</p>
-              <p>FREE</p>
-            </div>
-            <div className="flex justify-between py-2 font-bold">
-              <p>Total</p>
-              <p>{formatToIDR(subTotal)}</p>
-            </div>
-          </div>
-          <Button>CHECKOUT</Button>
+          <SidebarCart totalItem={totalItem} subTotal={subTotal} />
         </div>
       </div>
     </div>
