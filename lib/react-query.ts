@@ -20,9 +20,6 @@ export const queryClient = new QueryClient({
         if (err.response && err.response.status >= 500) {
           toast.error("Server error");
           return;
-        } else {
-          toast.error(err.response?.data.message || err.message);
-          return;
         }
       }
     },
