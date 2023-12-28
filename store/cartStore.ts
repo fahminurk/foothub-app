@@ -131,14 +131,4 @@ const removeFromCart = (cart: CartItem[], product: CartItem): CartItem[] => {
   );
 
   return cart.filter((item, index) => index !== indexItem);
-  // const item = cart.find(
-  //   (item) => item.id === product.id && item.size === product.size
-  // );
-
-  // if (item) {
-  //   return cart.filter(
-  //     (val) => val.size !== item.size && val.name !== item.name
-  //   );
-  // }
-  // return cart;
 };
