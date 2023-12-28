@@ -1,11 +1,11 @@
 "use client";
-import PromotionBanner from "@/components/PromotionBanner";
+import PromotionBanner from "@/features/home/components/PromotionBanner";
 import { category, homeText } from "@/constant";
 import gsap from "gsap";
 import { FaArrowRight } from "react-icons/fa";
 import Link from "next/link";
-import AdidasBanner from "@/components/AdidasBanner";
-import BestOfCarousel from "@/components/BestOfCarousel";
+import AdidasBanner from "@/features/home/components/AdidasBanner";
+import BestOfCarousel from "@/features/home/components/BestOfCarousel";
 import { Button } from "@/components/ui/button";
 
 export default function Home() {
