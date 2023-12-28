@@ -20,6 +20,11 @@ export type TShoe = {
   subCategory: TSubcategory;
 };
 
+export type TShoeDetails = {
+  shoe: TShoe;
+  sizeAndStock: TSizeAndStock[];
+};
+
 export type TSizeAndStock = {
   size: string;
   stock: number;
