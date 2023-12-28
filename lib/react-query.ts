@@ -15,10 +15,13 @@ export const queryClient = new QueryClient({
   queryCache: new QueryCache({
     onError: (error) => {
       if (error instanceof AxiosError) {
-        const err = error as AxiosError;
+        const err = error as AxiosError<{ message: string }>;
 
         if (err.response && err.response.status >= 500) {
           toast.error("Server error");
+          return;
+        } else {
+          toast.error(err.response?.data.message || err.message);
           return;
         }
       }
