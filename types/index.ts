@@ -83,3 +83,19 @@ export type TCity = {
   type: string;
   postcal_code: string;
 };
+
+export type TAddress = {
+  address: string;
+  addressDetails: string;
+  city: TCity;
+  city_id: string;
+  id: number;
+  isPrimary: boolean;
+  latitude: number;
+  longitude: number;
+  name: string;
+  phone: string;
+  postal_code: string;
+  title: string;
+  userId: number;
+};
