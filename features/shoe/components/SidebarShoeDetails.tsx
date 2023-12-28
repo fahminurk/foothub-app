@@ -1,4 +1,4 @@
-import { TShoe, TSizeAndStock } from "@/types";
+import { TShoe, TShoeDetails } from "@/types";
 import React, { useState } from "react";
 import { formatToIDR } from "@/lib/utils";
 import { Separator } from "@/components/ui/separator";
@@ -8,7 +8,7 @@ import { useCartStore } from "@/store/cartStore";
 import { toast } from "sonner";
 
 const SidebarShoeDetails: React.FC<{
-  data: { shoe: TShoe; sizeAndStock: TSizeAndStock[] };
+  data: TShoeDetails;
 }> = ({ data }) => {
   const { user } = useAuthStore();
   const [size, setSize] = useState<string>("");
@@ -33,21 +33,22 @@ const SidebarShoeDetails: React.FC<{
     <>
       <div className="flex justify-between pb-2 items-center">
         <p>
-          {data.shoe.category.name} • {data.shoe.subCategory.name}
+          {data.shoe.brand.name} • {data.shoe.category.name} •{" "}
+          {data.shoe.subCategory.name}
         </p>
-        <p className="p-2 rounded-full text-xs bg-black text-white dark:bg-white dark:text-black">
-          {data.shoe.status}
-        </p>
+        <p className="text-sm">{data.shoe.status}</p>
       </div>
       <Separator />
-      <p className="font-bold text-2xl md:text-4xl pt-5">{data.shoe.name}</p>
-      <p className="text-sm lg:text-lg pb-5">{formatToIDR(data.shoe.price)}</p>
-      <Separator />
-      <div className="py-5">
-        <p>{data.shoe.description}</p>
+      <div className="my-2">
+        <p className="font-bold text-2xl md:text-4xl">{data.shoe.name}</p>
+        <p className="text-sm lg:text-lg ">{formatToIDR(data.shoe.price)}</p>
       </div>
       <Separator />
-      <div className="flex flex-col py-5">
+      <div className="my-2 ">
+        <p className="text-sm">{data.shoe.description}</p>
+      </div>
+      <Separator />
+      <div className="flex flex-col my-2">
         <p className="text-sm font-semibold pb-2">SELECT SIZE</p>
         {!data.sizeAndStock.length && (
           <p className="p-2 text-center">No size available</p>
@@ -78,15 +79,14 @@ const SidebarShoeDetails: React.FC<{
       <Separator />
       <div className="pt-2 w-full">
         <Button
-          // disabled={!user?.email}
-
-          className="w-full"
+          disabled={!user?.email}
+          className="w-full disabled:cursor-not-allowed"
           onClick={() => handleCart(data.shoe)}
         >
           ADD TO CART
         </Button>
         {!user?.email && (
-          <p className="text-center text-sm text-red-400">
+          <p className="text-center text-xs text-red-400 py-2">
             Login first to add to cart
           </p>
         )}

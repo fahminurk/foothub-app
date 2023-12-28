@@ -25,11 +25,11 @@ const ShoeCard: React.FC<ShoeCardProps> = ({ item }) => {
       <CardFooter className="p-0">
         <div className="p-1 flex flex-col w-full gap-1">
           <p className="font-semibold truncate text-sm sm:text-lg">
-            {item.name.toUpperCase()}
+            {item.name}
           </p>
           <Separator />
           <p className="text-xs">
-            {item.category.name} • {item.subCategory.name}
+            {item.brand.name} • {item.category.name} • {item.subCategory.name}
           </p>
           <Separator />
           <p className="text-sm">{formatToIDR(item.price)}</p>
