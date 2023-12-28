@@ -19,7 +19,7 @@ import { useLoginMutation } from "@/actions/useAuth";
 import { loginSchema } from "@/schema";
 
 const Page = () => {
-  const { mutateAsync } = useLoginMutation();
+  const { mutateAsync, isPending } = useLoginMutation();
   const router = useRouter();
 
   const form = useForm<z.infer<typeof loginSchema>>({
@@ -31,8 +31,7 @@ const Page = () => {
   });
 
   async function onSubmit(values: z.infer<typeof loginSchema>) {
-    mutateAsync(values);
-    router.push("/");
+    await mutateAsync(values);
   }
 
   return (
@@ -72,7 +71,9 @@ const Page = () => {
                 </FormItem>
               )}
             />
-            <Button type="submit">Login</Button>
+            <Button type="submit" disabled={isPending}>
+              Login
+            </Button>
           </form>
         </Form>
         <Separator />

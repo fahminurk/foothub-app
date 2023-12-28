@@ -19,7 +19,7 @@ import { useRegisterMutation } from "@/actions/useAuth";
 import { registerSchema } from "@/schema";
 
 const Page = () => {
-  const { mutateAsync } = useRegisterMutation();
+  const { mutateAsync, isPending } = useRegisterMutation();
   const router = useRouter();
 
   const form = useForm<z.infer<typeof registerSchema>>({
@@ -33,8 +33,7 @@ const Page = () => {
   });
 
   async function onSubmit(values: z.infer<typeof registerSchema>) {
-    mutateAsync(values);
-    router.push("/");
+    await mutateAsync(values);
   }
   return (
     <div className="h-screen flex justify-center items-center p-2">
@@ -98,7 +97,9 @@ const Page = () => {
                 </FormItem>
               )}
             />
-            <Button type="submit">Register</Button>
+            <Button type="submit" disabled={isPending}>
+              Register
+            </Button>
           </form>
         </Form>
         <Separator />
