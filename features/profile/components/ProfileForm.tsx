@@ -2,7 +2,6 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
-
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -17,31 +16,24 @@ import { Input } from "@/components/ui/input";
 import { useAuthStore } from "@/store/authStore";
 import { ChangeEventHandler, useRef, useState } from "react";
 import { toast } from "sonner";
-import api from "@/lib/axios";
-
-const formSchema = z.object({
-  name: z.string().min(2),
-  phone: z
-    .string()
-    .min(11)
-    .max(12)
-    .startsWith("08", { message: "Invalid phone number, must start with 08" }),
-});
+import { profileSchema } from "@/schema";
+import { useUpdateProfileMutation } from "@/actions/useProfile";
 
 const ProfileForm = () => {
-  const { user, onAuthSuccess } = useAuthStore();
+  const user = useAuthStore().user;
+  const { mutateAsync } = useUpdateProfileMutation();
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const imgRef = useRef<HTMLInputElement>(null);
 
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<z.infer<typeof profileSchema>>({
+    resolver: zodResolver(profileSchema),
     defaultValues: {
       name: user?.name,
       phone: user?.phone,
     },
   });
 
-  async function onSubmit(values: z.infer<typeof formSchema>) {
+  async function onSubmit(values: z.infer<typeof profileSchema>) {
     const formData = new FormData();
     formData.append("name", values.name);
     formData.append("phone", values.phone);
@@ -49,12 +41,7 @@ const ProfileForm = () => {
       formData.append("file", selectedFile as Blob);
     }
 
-    const res = await api.patch("/user/" + user?.id, formData);
-
-    const userData = res.data.user;
-    const accessToken = res.data.accessToken;
-    toast.success("Profile updated successfully");
-    onAuthSuccess({ user: userData, accessToken });
+    mutateAsync(formData);
   }
 
   const handleInputProfilePictureChange: ChangeEventHandler<
@@ -79,7 +66,7 @@ const ProfileForm = () => {
         onClick={() => imgRef.current?.click()}
       >
         <AvatarImage src={user?.avatarUrl} />
-        <AvatarFallback>CN</AvatarFallback>
+        <AvatarFallback className="w-40 h-40">CN</AvatarFallback>
       </Avatar>
       <Input
         ref={imgRef}
