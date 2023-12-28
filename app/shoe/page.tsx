@@ -2,7 +2,6 @@
 import { useShoeQuery } from "@/actions/useShoe";
 import React, { useState } from "react";
 import ShoeCard from "@/features/shoe/components/ShoeCard";
-
 import {
   Select,
   SelectContent,
@@ -32,13 +31,12 @@ const Page = () => {
         </div>
         <Select
           onValueChange={(val) => {
-            console.log(val);
             const value = val.split("-");
             setSortBy(value[0]);
             setOrderBy(value[1]);
           }}
         >
-          <SelectTrigger className="w-[180px]">
+          <SelectTrigger className="w-[120px] md:w-[180px]">
             <SelectValue placeholder="SORT BY" />
           </SelectTrigger>
           <SelectContent>
