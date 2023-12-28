@@ -1,5 +1,6 @@
-import axios, { AxiosHeaders } from "axios";
+import axios, { AxiosError, AxiosHeaders } from "axios";
 import { useAuthStore } from "@/store/authStore";
+import { toast } from "sonner";
 
 const api = axios.create({
   baseURL:
@@ -18,5 +19,19 @@ api.interceptors.request.use((config) => {
 
   return config;
 });
+
+api.interceptors.response.use(
+  (response) => {
+    return response;
+  },
+  (error) => {
+    const err = error as AxiosError<{ message: string }>;
+    if (err.response?.data && err.response.status === 401) {
+      useAuthStore.getState().onLogout();
+      toast.error(err.response.data.message || "Token Expired please login");
+    }
+    return Promise.reject(error);
+  }
+);
 
 export default api;
