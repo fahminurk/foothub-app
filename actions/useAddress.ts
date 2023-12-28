@@ -29,12 +29,17 @@ export const useAddressQuery = (): UseQueryResult<TAddress[] | [], Error> => {
 
 export const useAddAddressMutation = () => {
   const queryClient = useQueryClient();
-  return useMutation<any, AxiosError, TVariables, unknown>({
-    mutationFn: (values) =>
-      api.post("/address", values).then((res) => res.data),
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["address"] });
-      toast.success("successfully added address");
-    },
-  });
+  return useMutation<any, AxiosError<{ message: string }>, TVariables, unknown>(
+    {
+      mutationFn: (values) =>
+        api.post("/address", values).then((res) => res.data),
+      onSuccess: () => {
+        queryClient.invalidateQueries({ queryKey: ["address"] });
+        toast.success("successfully added address");
+      },
+      onError: (error) => {
+        toast.error(error.response?.data.message);
+      },
+    }
+  );
 };

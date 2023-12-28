@@ -1,5 +1,5 @@
 import api from "@/lib/axios";
-import { TShoe, TSizeAndStock } from "@/types";
+import { TShoe, TShoeDetails, TSizeAndStock } from "@/types";
 import {
   UseQueryResult,
   useMutation,
@@ -15,11 +15,6 @@ type TQuery = {
   brand?: string;
   orderBy?: string;
   sortBy?: string;
-};
-
-type TShoeDetails = {
-  shoe: TShoe;
-  sizeAndStock: TSizeAndStock[];
 };
 
 export const useShoeQuery = (query: TQuery | null) => {
