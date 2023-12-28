@@ -30,3 +30,12 @@ export const addressSchema = z.object({
   province_id: z.string(),
   isPrimary: z.boolean(),
 });
+
+export const profileSchema = z.object({
+  name: z.string().min(2),
+  phone: z
+    .string()
+    .min(11)
+    .max(12)
+    .startsWith("08", { message: "Invalid phone number, must start with 08" }),
+});
