@@ -1,9 +1,7 @@
 "use client";
-
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
-
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -14,49 +12,33 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import api from "@/lib/axios";
 import { useRouter } from "next/navigation";
 import { Separator } from "@/components/ui/separator";
 import Link from "next/link";
-import { toast } from "sonner";
-import { AxiosError } from "axios";
-import { useAuthStore } from "@/store/authStore";
-
-const formSchema = z.object({
-  email: z.string().email(),
-  password: z.string().min(6),
-});
+import { useLoginMutation } from "@/actions/useAuth";
+import { loginSchema } from "@/schema";
 
 const Page = () => {
-  const onAuthSuccess = useAuthStore((state) => state.onAuthSuccess);
+  const { mutateAsync } = useLoginMutation();
   const router = useRouter();
 
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<z.infer<typeof loginSchema>>({
+    resolver: zodResolver(loginSchema),
     defaultValues: {
       email: "",
       password: "",
     },
   });
 
-  async function onSubmit(values: z.infer<typeof formSchema>) {
-    try {
-      const res = await api.post("/auth/login", values);
-      const user = res.data.user;
-      const accessToken = res.data.accessToken;
-      toast.success("Login success");
-      router.push("/");
-      onAuthSuccess({ user, accessToken });
-    } catch (error) {
-      const err = error as AxiosError<{ message: string }>;
-      toast.error(err.response?.data.message || err.message);
-      console.log(error);
-    }
+  async function onSubmit(values: z.infer<typeof loginSchema>) {
+    mutateAsync(values);
+    router.push("/");
   }
+
   return (
     <div className="h-[90vh] flex justify-center items-center p-2">
-      <div className="max-w-4xl w-full flex flex-col gap-2 p-4 border">
-        <p className="text-4xl md:text-5xl font-bold border-b pb-3">Login</p>
+      <div className="max-w-xl w-full flex flex-col gap-2 p-4 md:border rounded-xl">
+        <p className="text-4xl font-bold border-b pb-3">Login</p>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
             <FormField
