@@ -7,7 +7,7 @@ enum Roles {
   ADMIN = "ADMIN",
   SUPERADMIN = "SUPERADMIN",
 }
-type User = {
+export type User = {
   id: number;
   name: string;
   phone: string;
