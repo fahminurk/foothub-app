@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/select";
 import Link from "next/link";
 import { Separator } from "@/components/ui/separator";
+import Loader from "@/components/Loader";
 
 const Page = ({ params }: { params: { slug: string[] } }) => {
   const { slug } = params;
@@ -59,7 +60,7 @@ const Page = ({ params }: { params: { slug: string[] } }) => {
       </div>
       <Separator />
       {isFetching ? (
-        <div className="flex justify-center items-center h-[80vh]">loading</div>
+        <Loader />
       ) : data && data.length ? (
         <div className="gap-2 md:gap-4 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 w-full">
           {data?.map((item) => (
