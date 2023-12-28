@@ -33,7 +33,7 @@ import { addressSchema } from "@/schema";
 const AddressForm = () => {
   const [open, setOpen] = React.useState(false);
   const { data: provinces } = useProvinceQuery();
-  const { mutateAsync } = useAddAddressMutation();
+  const { mutateAsync, isPending } = useAddAddressMutation();
 
   const form = useForm<z.infer<typeof addressSchema>>({
     resolver: zodResolver(addressSchema),
@@ -52,7 +52,7 @@ const AddressForm = () => {
   const { data: cities } = useCityQuery(form.watch("province_id"));
 
   async function onSubmit(values: z.infer<typeof addressSchema>) {
-    mutateAsync(values);
+    await mutateAsync(values);
     setOpen(false);
   }
 
@@ -214,7 +214,9 @@ const AddressForm = () => {
               />
 
               <div className="flex justify-end">
-                <Button type="submit">Submit</Button>
+                <Button type="submit" disabled={isPending}>
+                  Submit
+                </Button>
               </div>
             </form>
           </Form>
