@@ -20,7 +20,7 @@ const Page = () => {
   const { data, isFetching } = useShoeQuery({ orderBy, sortBy });
 
   return (
-    <div className="container h-auto flex flex-col gap-2 my-2">
+    <div className="container h-auto flex flex-col gap-4 my-4">
       <div className="sticky top-[68px] z-10 bg-white flex justify-between items-center gap-2 py-2 ">
         <div className="flex flex-col">
           <p className="text-lg md:text-2xl lg:text-4xl font-bold">SHOES</p>

@@ -9,8 +9,10 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import AddressCard from "@/features/profile/components/AddressCard";
 import AddressForm from "@/features/profile/components/AddressForm";
 import ProfileForm from "@/features/profile/components/ProfileForm";
+import { cn } from "@/lib/utils";
 
 const Page = () => {
   const { data } = useAddressQuery();
@@ -45,7 +47,9 @@ const Page = () => {
                 <AddressForm />
               </CardHeader>
               <CardContent className="space-y-2">
-                <ProfileForm />
+                {data?.map((val) => (
+                  <AddressCard key={val.id} val={val} />
+                ))}
               </CardContent>
               <CardContent className="space-y-2">{/*  */}</CardContent>
             </Card>

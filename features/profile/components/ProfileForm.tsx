@@ -21,8 +21,9 @@ import { useUpdateProfileMutation } from "@/actions/useProfile";
 
 const ProfileForm = () => {
   const user = useAuthStore().user;
-  const { mutateAsync } = useUpdateProfileMutation();
+  const { mutateAsync, isPending } = useUpdateProfileMutation();
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [image, setImage] = useState<string>("");
   const imgRef = useRef<HTMLInputElement>(null);
 
   const form = useForm<z.infer<typeof profileSchema>>({
@@ -41,7 +42,7 @@ const ProfileForm = () => {
       formData.append("file", selectedFile as Blob);
     }
 
-    mutateAsync(formData);
+    await mutateAsync(formData);
   }
 
   const handleInputProfilePictureChange: ChangeEventHandler<
@@ -54,18 +55,21 @@ const ProfileForm = () => {
         event.target.value = "";
         return toast.error("Batas file size 2 MB");
       }
-
       setSelectedFile(event.target.files[0]);
+      setImage(URL.createObjectURL(event.target.files[0]));
     }
   };
 
   return (
     <div className="flex flex-col items-center gap-4">
       <Avatar
-        className="w-40 h-40 cursor-pointer"
+        className="cursor-pointer"
         onClick={() => imgRef.current?.click()}
       >
-        <AvatarImage src={user?.avatarUrl} />
+        <AvatarImage
+          className="object-cover"
+          src={image ? image : user?.avatarUrl}
+        />
         <AvatarFallback className="w-40 h-40">CN</AvatarFallback>
       </Avatar>
       <Input
@@ -109,7 +113,9 @@ const ProfileForm = () => {
               </FormItem>
             )}
           />
-          <Button type="submit">Save</Button>
+          <Button type="submit" disabled={isPending}>
+            Save
+          </Button>
         </form>
       </Form>
     </div>

@@ -18,16 +18,19 @@ const Page = ({ params }: { params: { slug: string[] } }) => {
   const [orderBy, setOrderBy] = useState("asc");
   const [sortBy, setSortBy] = useState("name");
 
+  const brands = ["Adidas", "Nike", "Converse", "Vans"];
+  const categories = ["Men", "Women", "Kid"];
+
   const { data, isFetching } = useShoeQuery({
-    brand: slug[0],
-    category: slug[0],
+    brand: brands.includes(slug[0]) ? slug[0] : "",
+    category: categories.includes(slug[0]) ? slug[0] : "",
     subcategory: slug[1],
     orderBy,
     sortBy,
   });
 
   return (
-    <div className="container flex flex-col gap-2 my-2">
+    <div className="container flex flex-col gap-4 my-4">
       <div className="sticky top-[68px] z-10  bg-white flex justify-between items-center gap-2 py-2 ">
         <div className="flex flex-col">
           <div className="flex gap-2 text-lg md:text-2xl lg:text-4xl font-bold">

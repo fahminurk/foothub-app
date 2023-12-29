@@ -18,15 +18,17 @@ export const AvatarDropdown = () => {
       <DropdownMenuTrigger className="self-start">
         <Avatar className="h-10 w-10">
           <AvatarFallback>{user?.name.charAt(0)}</AvatarFallback>
-          <AvatarImage src={user?.avatarUrl} />
+          <AvatarImage className="object-cover" src={user?.avatarUrl} />
         </Avatar>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" sideOffset={8}>
         <DropdownMenuLabel>My Account</DropdownMenuLabel>
         <DropdownMenuSeparator />
-        <DropdownMenuItem asChild>
-          <Link href="/dashboard">Dashboard Creator</Link>
-        </DropdownMenuItem>
+        {user?.role !== "USER" && (
+          <DropdownMenuItem asChild>
+            <Link href="/dashboard">Dashboard</Link>
+          </DropdownMenuItem>
+        )}
         <DropdownMenuItem asChild>
           <Link href="/profile">Profile</Link>
         </DropdownMenuItem>

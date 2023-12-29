@@ -31,11 +31,7 @@ export default function RootLayout({
         )}
       >
         <QueryProvider>
-          <div className="relative flex min-h-screen flex-col">
-            <Header />
-            {children}
-            <Footer />
-          </div>
+          <div className="relative flex min-h-screen flex-col">{children}</div>
         </QueryProvider>
       </body>
     </html>

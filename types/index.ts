@@ -100,7 +100,7 @@ export type TAddress = {
   longitude: number;
   name: string;
   phone: string;
-  postal_code: string;
+  postcal_code: string;
   title: string;
   userId: number;
 };

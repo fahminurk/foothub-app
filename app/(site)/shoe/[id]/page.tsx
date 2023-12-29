@@ -12,7 +12,7 @@ const Page = ({ params }: { params: { id: string } }) => {
       {!data ? (
         <Loader />
       ) : (
-        <div className="container flex flex-col gap-2 my-4">
+        <div className="container flex flex-col gap-4 my-4">
           <div className="grid grid-cols-1 lg:grid-cols-3">
             <img
               src={data.shoe.shoeImage[0].imgUrl}

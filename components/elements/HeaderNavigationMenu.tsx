@@ -50,7 +50,7 @@ const HeaderNavigationMenu = () => {
               {subcategory.map((item) => (
                 <Link
                   key={item.title}
-                  href={`/men/${item.href}`}
+                  href={`/Men/${item.href}`}
                   className="p-4 hover:bg-gray-100 hover:cursor-pointer"
                 >
                   <NavigationMenuLink>{item.title}</NavigationMenuLink>
@@ -67,7 +67,7 @@ const HeaderNavigationMenu = () => {
               {subcategory.map((item) => (
                 <Link
                   key={item.title}
-                  href={`/women/${item.href}`}
+                  href={`/Women/${item.href}`}
                   className="p-4 hover:bg-gray-100 hover:cursor-pointer"
                 >
                   <NavigationMenuLink>{item.title}</NavigationMenuLink>
@@ -84,7 +84,7 @@ const HeaderNavigationMenu = () => {
               {subcategory.map((item) => (
                 <Link
                   key={item.title}
-                  href={`/kid/${item.href}`}
+                  href={`/Kid/${item.href}`}
                   className="p-4 hover:bg-gray-100 hover:cursor-pointer"
                 >
                   <NavigationMenuLink>{item.title}</NavigationMenuLink>

@@ -13,7 +13,8 @@ const AuthenticatedRoute: React.FC<React.PropsWithChildren> = ({
     if (!user) {
       router.replace("/");
     }
-  }, [router, user]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user]);
   return children;
 };
 

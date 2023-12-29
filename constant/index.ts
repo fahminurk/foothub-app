@@ -2,34 +2,34 @@ export const category = [
   {
     title: "MEN",
     image: "/images/men.jpeg",
-    href: "/men",
+    href: "/Men",
   },
   {
     title: "Women",
     image: "/images/women.webp",
-    href: "/women",
+    href: "/Women",
   },
   {
     title: "KID",
     image: "/images/kid.jpeg",
-    href: "/kid",
+    href: "/Kid",
   },
 ];
 
 export const brands = [
   {
     title: "Adidas",
-    href: "/adidas",
+    href: "/Adidas",
     img: "/images/adidas-logo.jpeg",
   },
   {
     title: "Nike",
-    href: "/nike",
+    href: "/Nike",
     img: "/images/nike-logo.jpeg",
   },
   {
     title: "Converse",
-    href: "/converse",
+    href: "/Converse",
     img: "/images/converse-logo.jpeg",
   },
 ];
@@ -41,11 +41,11 @@ export const subcategory = [
   },
   {
     title: "Running",
-    href: "/running",
+    href: "/Running",
   },
   {
     title: "Basketball",
-    href: "/basketball",
+    href: "/Basketball",
   },
 ];
 

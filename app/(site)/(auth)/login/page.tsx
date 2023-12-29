@@ -20,7 +20,6 @@ import { loginSchema } from "@/schema";
 
 const Page = () => {
   const { mutateAsync, isPending } = useLoginMutation();
-  const router = useRouter();
 
   const form = useForm<z.infer<typeof loginSchema>>({
     resolver: zodResolver(loginSchema),
