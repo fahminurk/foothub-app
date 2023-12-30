@@ -24,14 +24,11 @@ export const AvatarDropdown = () => {
       <DropdownMenuContent align="end" sideOffset={8}>
         <DropdownMenuLabel>My Account</DropdownMenuLabel>
         <DropdownMenuSeparator />
-        {user?.role !== "USER" && (
+        {user?.role === "USER" && (
           <DropdownMenuItem asChild>
-            <Link href="/dashboard">Dashboard</Link>
+            <Link href="/profile">Profile</Link>
           </DropdownMenuItem>
         )}
-        <DropdownMenuItem asChild>
-          <Link href="/profile">Profile</Link>
-        </DropdownMenuItem>
         <DropdownMenuItem
           onClick={onLogout}
           className="font-semibold text-red-500"
