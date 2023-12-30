@@ -37,11 +37,11 @@ export const brands = [
 export const subcategory = [
   {
     title: "Casual",
-    href: "/casual",
+    href: "/Casual",
   },
   {
-    title: "Running",
-    href: "/Running",
+    title: "Football",
+    href: "/Football",
   },
   {
     title: "Basketball",
