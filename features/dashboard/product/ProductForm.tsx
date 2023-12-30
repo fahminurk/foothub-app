@@ -26,7 +26,10 @@ import {
 } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
 import { useCategoryQuery } from "@/actions/useCategory";
-import { useSubcategoryQuery } from "@/actions/useSubcategory";
+import {
+  useSubcategoryByCateQuery,
+  useSubcategoryQuery,
+} from "@/actions/useSubcategory";
 import { toast } from "sonner";
 import { useAddProductMutation } from "@/actions/useShoe";
 import { useBrandQuery } from "@/actions/useBrand";
@@ -60,7 +63,9 @@ const ProductForm = () => {
   const [open, setOpen] = React.useState(false);
   const { data: brands } = useBrandQuery();
   const { data: categories } = useCategoryQuery();
-  const { data: subcategories } = useSubcategoryQuery(form.watch("categoryId"));
+  const { data: subcategories } = useSubcategoryByCateQuery(
+    form.watch("categoryId")
+  );
   const [selectedFiles, setSelectedFiles] = useState<FileList | null>(null);
   const { mutateAsync, isPending } = useAddProductMutation();
 
@@ -82,6 +87,8 @@ const ProductForm = () => {
     }
 
     await mutateAsync(formData);
+    form.reset();
+    setSelectedFiles(null);
     setOpen(false);
   }
 

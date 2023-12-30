@@ -1,5 +1,5 @@
 "use client";
-import React, { ChangeEventHandler, useState } from "react";
+import React from "react";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -18,53 +18,40 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
-import { toast } from "sonner";
-import { useAddBrandMutation } from "@/actions/useBrand";
-import { AspectRatio } from "@/components/ui/aspect-ratio";
+import { useCategoryQuery } from "@/actions/useCategory";
+import { useAddSubcategoryMutation } from "@/actions/useSubcategory";
 
 export const formSchema = z.object({
   name: z.string().min(2),
+  categoryId: z.string(),
 });
 
-const BrandForm = () => {
+const SubcategoryForm = () => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: "",
+      categoryId: "",
     },
   });
 
   const [open, setOpen] = React.useState(false);
-  const [selectedFile, setSelectedFile] = useState<File | null>(null);
-  const [image, setImage] = useState<string>("");
-  const { mutateAsync, isPending } = useAddBrandMutation();
+  const { data: categories } = useCategoryQuery();
+  const { mutateAsync, isPending } = useAddSubcategoryMutation();
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    const formData = new FormData();
-    formData.append("name", values.name);
-    if (selectedFile) {
-      formData.append("file", selectedFile);
-    }
-
-    await mutateAsync(formData);
+    await mutateAsync(values);
     form.reset();
-    setSelectedFile(null);
     setOpen(false);
   }
-
-  const handleFile: ChangeEventHandler<HTMLInputElement> = (event) => {
-    const MAX_SIZE = 2 * 1024 * 1024;
-
-    if (event.target.files?.length) {
-      if (event.target.files[0].size > MAX_SIZE) {
-        event.target.value = "";
-        return toast.error("Batas file size 2 MB");
-      }
-      setSelectedFile(event.target.files[0]);
-      setImage(URL.createObjectURL(event.target.files[0]));
-    }
-  };
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
@@ -74,7 +61,7 @@ const BrandForm = () => {
       <DialogContent>
         <DialogHeader>
           <DialogTitle className="mb-5 text-xl font-bold">
-            ADD BRAND
+            ADD SUBCATEGORY
           </DialogTitle>
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">
@@ -91,16 +78,36 @@ const BrandForm = () => {
                   </FormItem>
                 )}
               />
-
-              <Input type="file" onChange={handleFile} accept="image/*" />
-              {image && (
-                <AspectRatio>
-                  <img src={image} alt="img" />
-                </AspectRatio>
-              )}
+              <FormField
+                control={form.control}
+                name="categoryId"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Category</FormLabel>
+                    <Select
+                      onValueChange={field.onChange}
+                      defaultValue={field.value}
+                    >
+                      <FormControl>
+                        <SelectTrigger>
+                          <SelectValue placeholder="select category" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent className="bg-white">
+                        {categories?.map((item) => (
+                          <SelectItem key={item.id} value={item.id.toString()}>
+                            {item.name}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
 
               <div className="flex justify-end">
-                <Button type="submit" disabled={isPending || !selectedFile}>
+                <Button type="submit" disabled={isPending}>
                   Submit
                 </Button>
               </div>
@@ -112,4 +119,4 @@ const BrandForm = () => {
   );
 };
 
-export default BrandForm;
+export default SubcategoryForm;

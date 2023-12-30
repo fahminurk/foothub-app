@@ -20,14 +20,13 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
-import { useAddBrandMutation } from "@/actions/useBrand";
-import { AspectRatio } from "@/components/ui/aspect-ratio";
+import { useAddCategoryMutation } from "@/actions/useCategory";
 
 export const formSchema = z.object({
   name: z.string().min(2),
 });
 
-const BrandForm = () => {
+const CategoryForm = () => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -38,7 +37,7 @@ const BrandForm = () => {
   const [open, setOpen] = React.useState(false);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [image, setImage] = useState<string>("");
-  const { mutateAsync, isPending } = useAddBrandMutation();
+  const { mutateAsync, isPending } = useAddCategoryMutation();
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     const formData = new FormData();
@@ -74,7 +73,7 @@ const BrandForm = () => {
       <DialogContent>
         <DialogHeader>
           <DialogTitle className="mb-5 text-xl font-bold">
-            ADD BRAND
+            ADD CATEGORY
           </DialogTitle>
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">
@@ -93,14 +92,9 @@ const BrandForm = () => {
               />
 
               <Input type="file" onChange={handleFile} accept="image/*" />
-              {image && (
-                <AspectRatio>
-                  <img src={image} alt="img" />
-                </AspectRatio>
-              )}
 
               <div className="flex justify-end">
-                <Button type="submit" disabled={isPending || !selectedFile}>
+                <Button type="submit" disabled={isPending}>
                   Submit
                 </Button>
               </div>
@@ -112,4 +106,4 @@ const BrandForm = () => {
   );
 };
 
-export default BrandForm;
+export default CategoryForm;
