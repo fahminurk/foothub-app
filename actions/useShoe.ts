@@ -15,6 +15,7 @@ type TQuery = {
   brand?: string;
   orderBy?: string;
   sortBy?: string;
+  search?: string;
 };
 
 type TVariables = {
