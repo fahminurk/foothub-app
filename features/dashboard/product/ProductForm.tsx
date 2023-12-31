@@ -1,3 +1,4 @@
+"use client";
 import React, { ChangeEventHandler, useState } from "react";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -26,10 +27,7 @@ import {
 } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
 import { useCategoryQuery } from "@/actions/useCategory";
-import {
-  useSubcategoryByCateQuery,
-  useSubcategoryQuery,
-} from "@/actions/useSubcategory";
+import { useSubcategoryByCateQuery } from "@/actions/useSubcategory";
 import { toast } from "sonner";
 import { useAddProductMutation } from "@/actions/useShoe";
 import { useBrandQuery } from "@/actions/useBrand";
@@ -111,7 +109,7 @@ const ProductForm = () => {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <Button variant={"outline"} onClick={() => setOpen(!open)}>
-        Add Product
+        Add
       </Button>
       <DialogContent>
         <DialogHeader>
