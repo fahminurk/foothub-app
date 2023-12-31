@@ -8,8 +8,6 @@ import { cn } from "@/lib/utils";
 // const Header = dynamic(() => import("@/components/elements/Header"), {
 //   ssr: false,
 // });
-import Header from "@/components/elements/Header";
-import Footer from "@/components/elements/Footer";
 
 export const metadata: Metadata = {
   title: "Foothub",
