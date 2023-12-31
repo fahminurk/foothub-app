@@ -45,69 +45,74 @@ const BurgerMenu = () => {
           <Accordion type="single" collapsible className="w-full">
             <AccordionItem value="item-1">
               <AccordionTrigger className="font-bold">BRANDS</AccordionTrigger>
-              <AccordionContent>
-                <div
-                  className="flex flex-col p-1"
-                  onClick={() => setOpen(false)}
-                >
-                  {brands.map((item, i) => (
-                    <Link
-                      href={item.href}
-                      key={item.title}
-                      className="p-4 hover:bg-gray-100 hover:cursor-pointer rounded-md"
-                    >
-                      {item.title}
-                    </Link>
-                  ))}
-                </div>
+              <AccordionContent
+                className=" flex flex-col gap-0 [&>*:nth-child(even)]:flex-row-reverse"
+                onClick={() => setOpen(false)}
+              >
+                {brands.map((item, i) => (
+                  <Link
+                    href={item.href}
+                    key={item.title}
+                    className="flex items-center gap-2 p-2 text-xl font-bold hover:bg-black hover:text-white transition-all"
+                  >
+                    <p> {item.title}</p>
+                    <div className="h-1 w-full bg-black" />
+                  </Link>
+                ))}
               </AccordionContent>
             </AccordionItem>
             <AccordionItem value="item-2">
               <AccordionTrigger className="font-bold">MEN</AccordionTrigger>
-              <AccordionContent>
-                <div className="flex  flex-col" onClick={() => setOpen(false)}>
-                  {subcategory.map((item) => (
-                    <Link
-                      key={item.title}
-                      href={`/Men/${item.href}`}
-                      className="p-4 hover:bg-gray-100 hover:cursor-pointer"
-                    >
-                      {item.title}
-                    </Link>
-                  ))}
-                </div>
+              <AccordionContent
+                className=" flex flex-col gap-0 [&>*:nth-child(even)]:flex-row-reverse"
+                onClick={() => setOpen(false)}
+              >
+                {subcategory.map((item, i) => (
+                  <Link
+                    href={`/Men/${item.href}`}
+                    key={item.title}
+                    className="flex items-center gap-2 p-2 text-xl font-bold hover:bg-black hover:text-white transition-all"
+                  >
+                    <p> {item.title}</p>
+                    <div className="h-1 w-full bg-black" />
+                  </Link>
+                ))}
               </AccordionContent>
             </AccordionItem>
             <AccordionItem value="item-3">
               <AccordionTrigger className="font-bold">WOMEN</AccordionTrigger>
-              <AccordionContent>
-                <div className="flex  flex-col" onClick={() => setOpen(false)}>
-                  {subcategory.map((item) => (
-                    <Link
-                      key={item.title}
-                      href={`/Women/${item.href}`}
-                      className="p-4 hover:bg-gray-100 hover:cursor-pointer"
-                    >
-                      {item.title}
-                    </Link>
-                  ))}
-                </div>
+              <AccordionContent
+                className=" flex flex-col gap-0 [&>*:nth-child(even)]:flex-row-reverse"
+                onClick={() => setOpen(false)}
+              >
+                {subcategory.map((item, i) => (
+                  <Link
+                    href={`/Women/${item.href}`}
+                    key={item.title}
+                    className="flex items-center gap-2 p-2 text-xl font-bold hover:bg-black hover:text-white transition-all"
+                  >
+                    <p> {item.title}</p>
+                    <div className="h-1 w-full bg-black" />
+                  </Link>
+                ))}
               </AccordionContent>
             </AccordionItem>
             <AccordionItem value="item-4">
               <AccordionTrigger className="font-bold">KID</AccordionTrigger>
-              <AccordionContent>
-                <div className="flex  flex-col" onClick={() => setOpen(false)}>
-                  {subcategory.map((item) => (
-                    <Link
-                      key={item.title}
-                      href={`/Kid/${item.href}`}
-                      className="p-4 hover:bg-gray-100 hover:cursor-pointer"
-                    >
-                      {item.title}
-                    </Link>
-                  ))}
-                </div>
+              <AccordionContent
+                className=" flex flex-col gap-0 [&>*:nth-child(even)]:flex-row-reverse"
+                onClick={() => setOpen(false)}
+              >
+                {subcategory.map((item, i) => (
+                  <Link
+                    href={`/Kid/${item.href}`}
+                    key={item.title}
+                    className="flex items-center gap-2 p-2 text-xl font-bold hover:bg-black hover:text-white transition-all"
+                  >
+                    <p> {item.title}</p>
+                    <div className="h-1 w-full bg-black" />
+                  </Link>
+                ))}
               </AccordionContent>
             </AccordionItem>
           </Accordion>

@@ -9,10 +9,13 @@ import { Input } from "../ui/input";
 import HeaderNavigationMenu from "./HeaderNavigationMenu";
 import BurgerMenu from "./BurgerMenu";
 import { useAuthStore } from "@/store/authStore";
+import { useState } from "react";
+import { InputGroup } from "../ui/inputGroup";
 
 const Header = () => {
   const { user } = useAuthStore();
   const router = useRouter();
+  const [keyword, setKeyword] = useState<string>("");
 
   return (
     <div className="sticky -top-1 z-50 flex p-4 justify-between items-center bg-background/70 border-b backdrop-blur">
@@ -22,8 +25,19 @@ const Header = () => {
       </Link>
       <HeaderNavigationMenu />
 
-      <div className="flex gap-1">
-        <Input className="hidden lg:block" />
+      <div className="flex gap-2">
+        <div className=" lg:block">
+          <InputGroup
+            placeholder="Search..."
+            value={keyword}
+            onChange={(e) => setKeyword(e.target.value)}
+            onClick={() => {
+              router.push(`/search/${keyword.replace(" ", "-")}`);
+              setKeyword("");
+            }}
+            icon={<IoSearch />}
+          />
+        </div>
         <Button
           className="rounded-full hidden md:flex lg:hidden"
           variant="ghost"

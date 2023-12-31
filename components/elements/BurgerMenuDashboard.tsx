@@ -52,18 +52,16 @@ const BurgerMenuDashboard = () => {
         </Button>
       </DrawerTrigger>
       <DrawerContent className="bg-background">
-        <DrawerHeader className="relative flex justify-center items-center gap-4">
-          {/* <p className="text-xl font-bold">FOOTHUB</p> */}
-        </DrawerHeader>
-        <DrawerFooter className=" flex flex-col gap-0 [&>*:nth-child(even)]:text-right">
+        <DrawerFooter className=" flex flex-col gap-0 [&>*:nth-child(even)]:flex-row-reverse">
           {menu.map((item) => (
             <Link
               href={item.link}
               key={item.name}
               onClick={() => setOpen(!open)}
-              className="p-2 border-b text-xl font-bold hover:bg-gray-200"
+              className="flex items-center gap-2 p-2 text-xl font-bold hover:bg-black hover:text-white transition-all"
             >
-              {item.name}
+              <p> {item.name}</p>
+              <div className="h-1 w-full bg-black" />
             </Link>
           ))}
         </DrawerFooter>
