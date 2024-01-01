@@ -6,7 +6,6 @@ import { FaArrowRight } from "react-icons/fa";
 import Link from "next/link";
 import AdidasBanner from "@/features/home/components/AdidasBanner";
 import BestOfCarousel from "@/features/home/components/BestOfCarousel";
-import { Button } from "@/components/ui/button";
 
 export default function Home() {
   const mouseEnter = (e: any, i: number) => {
@@ -54,7 +53,7 @@ export default function Home() {
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
         {category.map((item, i) => (
           <Link
-            href={"/"}
+            href={item.href}
             key={i}
             className=" overflow-hidden h-[370px] md:h-[500px] group "
           >
