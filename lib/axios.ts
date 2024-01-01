@@ -3,10 +3,10 @@ import { useAuthStore } from "@/store/authStore";
 import { toast } from "sonner";
 
 const api = axios.create({
-  baseURL: "https://foothubapi.fahminurkamil.tech",
-  // process.env.NODE_ENV === "development"
-  //   ? process.env.NEXT_PUBLIC_API_URL_DEV
-  //   : process.env.NEXT_PUBLIC_API_URL_PROD,
+  baseURL:
+    process.env.NODE_ENV === "development"
+      ? "http://localhost:8000"
+      : "https://foothubapi.fahminurkamil.tech",
 });
 
 api.interceptors.request.use((config) => {
