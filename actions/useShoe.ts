@@ -1,5 +1,5 @@
 import api from "@/lib/axios";
-import { TShoe, TShoeDetails, TSizeAndStock } from "@/types";
+import { TShoe, TShoeDetails, TShoeSize, TSizeAndStock, TStock } from "@/types";
 import {
   UseQueryResult,
   useMutation,
@@ -52,6 +52,59 @@ export const useAddProductMutation = () => {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["shoes"] });
       toast.success("successfully added product");
+    },
+    onError: (error) => {
+      toast.error(error.response?.data.message);
+    },
+  });
+};
+
+export const useSizeQuery = () => {
+  return useQuery<TShoeSize[], AxiosError>({
+    queryKey: ["sizes"],
+    queryFn: () => api.get("/shoe/size").then((res) => res.data),
+  });
+};
+
+export const useAddSizeMutation = () => {
+  const queryClient = useQueryClient();
+  return useMutation<
+    any,
+    AxiosError<{ message: string }>,
+    { size: string },
+    unknown
+  >({
+    mutationFn: (values) =>
+      api.post("/shoe/size", values).then((res) => res.data),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["sizes"] });
+      toast.success("successfully added size");
+    },
+    onError: (error) => {
+      toast.error(error.response?.data.message);
+    },
+  });
+};
+
+export const useStockQuery = () => {
+  return useQuery<TStock[], AxiosError>({
+    queryKey: ["stocks"],
+    queryFn: () => api.get("/stock").then((res) => res.data),
+  });
+};
+
+export const useAddStockMutation = () => {
+  const queryClient = useQueryClient();
+  return useMutation<
+    any,
+    AxiosError<{ message: string }>,
+    { stock: string; shoeId: string; sizeId: string },
+    unknown
+  >({
+    mutationFn: (values) => api.post("/stock", values).then((res) => res.data),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["stocks"] });
+      toast.success("successfully added stock");
     },
     onError: (error) => {
       toast.error(error.response?.data.message);
