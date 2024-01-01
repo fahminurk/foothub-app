@@ -6,6 +6,7 @@ import SidebarCart from "@/features/cart/components/SidebarCart";
 import { useAddressQuery } from "@/actions/useAddress";
 import AddressCard from "@/features/profile/components/AddressCard";
 import { TAddress } from "@/types";
+import AuthenticatedRoute from "@/components/guards/AuthenticatedRoute";
 
 const Page = () => {
   const { subTotal, totalItem } = useCartStore();
@@ -20,32 +21,42 @@ const Page = () => {
   }, [isPrimary]);
 
   return (
-    <div className="container flex flex-col gap-2 my-4 ">
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-2 min-h-screen">
-        <div className="flex flex-col gap-3 col-span-2 lg:p-2 lg:border-r ">
-          <div className="flex justify-between">
-            <div>
-              <p className="text-2xl md:text-4xl font-bold">SHIPPING DETAILS</p>
-              <p>Your saved addresses</p>
+    <AuthenticatedRoute>
+      <div className="container flex flex-col gap-2 my-4 ">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-2">
+          <div className="flex flex-col gap-3 col-span-2 ">
+            <div className="flex justify-between">
+              <div>
+                <p className="text-2xl md:text-4xl font-bold">
+                  SHIPPING DETAILS
+                </p>
+                <p>Your saved addresses</p>
+              </div>
             </div>
-          </div>
-          <Separator />
+            <Separator />
 
-          {data?.map((val) => (
-            <AddressCard
-              key={val.id}
-              val={val}
-              selectedAddress={selectedAddress}
-              setSelectedAddress={setSelectedAddress}
-            />
-          ))}
-        </div>
-        {/* sidebar cart */}
-        <div className="sticky top-20 flex flex-col gap-2 h-max lg:p-2">
-          <SidebarCart totalItem={totalItem} subTotal={subTotal} />
+            {!data?.length && (
+              <div className="flex justify-center items-center h-96">
+                no address
+              </div>
+            )}
+
+            {data?.map((val) => (
+              <AddressCard
+                key={val.id}
+                val={val}
+                selectedAddress={selectedAddress}
+                setSelectedAddress={setSelectedAddress}
+              />
+            ))}
+          </div>
+          {/* sidebar cart */}
+          <div className="sticky top-20 flex flex-col gap-2 h-max lg:p-2">
+            <SidebarCart totalItem={totalItem} subTotal={subTotal} />
+          </div>
         </div>
       </div>
-    </div>
+    </AuthenticatedRoute>
   );
 };
 
