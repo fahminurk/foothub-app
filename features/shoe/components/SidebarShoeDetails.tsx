@@ -31,7 +31,7 @@ const SidebarShoeDetails: React.FC<{
 
   return (
     <>
-      <div className="flex justify-between pb-2 items-center">
+      <div className="flex justify-between items-center">
         <p>
           {data.shoe.brand.name} • {data.shoe.category.name} •{" "}
           {data.shoe.subCategory.name}
@@ -79,7 +79,7 @@ const SidebarShoeDetails: React.FC<{
       <Separator />
       <div className="pt-2 w-full">
         <Button
-          disabled={!user?.email}
+          disabled={!user?.email || !data.sizeAndStock.length}
           className="w-full disabled:cursor-not-allowed"
           onClick={() => handleCart(data.shoe)}
         >

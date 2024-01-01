@@ -10,7 +10,7 @@ export interface InputGroupProps
 const InputGroup = React.forwardRef<HTMLInputElement, InputGroupProps>(
   ({ className, type, icon, onClick, ...props }, ref) => {
     return (
-      <div className="relative">
+      <div className="relative w-full">
         <input
           type={type}
           className={cn(

@@ -17,14 +17,26 @@ import {
 } from "@/components/ui/select";
 import ActionDropdown from "@/components/elements/ActionDropdown";
 import { useSubcategoryQuery } from "@/actions/useSubcategory";
+import { InputGroup } from "@/components/ui/inputGroup";
+import { IoSearch } from "react-icons/io5";
+import { useState } from "react";
+import { useDebounce } from "use-debounce";
 
 const SubcategoryList = () => {
+  const [keyword, setKeyword] = useState("");
+  const [value] = useDebounce(keyword, 1000);
   const { data } = useSubcategoryQuery();
 
   return (
     <>
       <div className="flex justify-between gap-2 w-full">
-        <Input className="max-w-sm" />
+        <div className="max-w-lg w-full">
+          <Input
+            value={keyword}
+            onChange={(e) => setKeyword(e.target.value)}
+            placeholder="Search Subcategory..."
+          />
+        </div>
         <div className="flex gap-1">
           <Select>
             <SelectTrigger className="max-w-max">

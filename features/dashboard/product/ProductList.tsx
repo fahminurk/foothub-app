@@ -16,17 +16,26 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import ActionDropdown from "@/components/elements/ActionDropdown";
-import { useCategoryQuery } from "@/actions/useCategory";
 import { useShoeQuery } from "@/actions/useShoe";
+import { InputGroup } from "@/components/ui/inputGroup";
+import { IoSearch } from "react-icons/io5";
+import { useState } from "react";
+import { useDebounce } from "use-debounce";
 
 const ProductList = () => {
-  const { data } = useShoeQuery({});
-  console.log(data);
-
+  const [keyword, setKeyword] = useState("");
+  const [value] = useDebounce(keyword, 1000);
+  const { data } = useShoeQuery({ search: value });
   return (
     <>
       <div className="flex justify-between gap-2">
-        <Input className="max-w-sm" />
+        <div className="max-w-lg w-full">
+          <Input
+            value={keyword}
+            onChange={(e) => setKeyword(e.target.value)}
+            placeholder="Search Product, Category, Subcategory..."
+          />
+        </div>
         <Select defaultValue={"asc"}>
           <SelectTrigger className="max-w-max">
             <SelectValue />
@@ -43,13 +52,10 @@ const ProductList = () => {
             <TableHead className="w-[50px]">#</TableHead>
             <TableHead className="w-[120px] h-[120px]">image</TableHead>
             <TableHead>name</TableHead>
-            <TableHead className="hidden md:table-caption">category</TableHead>
-            <TableHead className="hidden md:table-caption">
-              subcategory
-            </TableHead>
-            <TableHead className="hidden md:table-caption">price</TableHead>
-            <TableHead className="hidden md:table-caption">status</TableHead>
-            <TableHead className=" md:hidden">details</TableHead>
+            <TableHead>category</TableHead>
+            <TableHead>subcategory</TableHead>
+            <TableHead>price</TableHead>
+            <TableHead>status</TableHead>
             <TableHead className="text-right"></TableHead>
           </TableRow>
         </TableHeader>
@@ -65,19 +71,10 @@ const ProductList = () => {
                 />
               </TableCell>
               <TableCell>{val.name}</TableCell>
-              <TableCell className="hidden md:table-cell">
-                {val.category.name}
-              </TableCell>
-              <TableCell className="hidden md:table-cell">
-                {val.subCategory.name}
-              </TableCell>
-              <TableCell className="hidden md:table-cell">
-                {val.price}
-              </TableCell>
-              <TableCell className="hidden md:table-cell">
-                {val.status}
-              </TableCell>
-              <TableCell className="md:hidden">{val.status}</TableCell>
+              <TableCell>{val.category.name}</TableCell>
+              <TableCell>{val.subCategory.name}</TableCell>
+              <TableCell>{val.price}</TableCell>
+              <TableCell>{val.status}</TableCell>
               <TableCell className="text-right">
                 <ActionDropdown>
                   <p>Edit</p>

@@ -17,14 +17,26 @@ import {
 } from "@/components/ui/select";
 import { useBrandQuery } from "@/actions/useBrand";
 import ActionDropdown from "@/components/elements/ActionDropdown";
+import { InputGroup } from "@/components/ui/inputGroup";
+import { useState } from "react";
+import { IoSearch } from "react-icons/io5";
+import { useDebounce } from "use-debounce";
 
 const BrandList = () => {
+  const [keyword, setKeyword] = useState("");
+  const [value] = useDebounce(keyword, 1000);
   const { data } = useBrandQuery();
 
   return (
     <>
       <div className="flex justify-between gap-2">
-        <Input className="max-w-sm" />
+        <div className="max-w-lg w-full">
+          <Input
+            value={keyword}
+            onChange={(e) => setKeyword(e.target.value)}
+            placeholder="Search Brand..."
+          />
+        </div>
         <Select defaultValue={"asc"}>
           <SelectTrigger className="max-w-max">
             <SelectValue />

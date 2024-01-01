@@ -16,16 +16,14 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import ActionDropdown from "@/components/elements/ActionDropdown";
-import { useCategoryQuery } from "@/actions/useCategory";
-import { InputGroup } from "@/components/ui/inputGroup";
+import { useStockQuery } from "@/actions/useShoe";
 import { useState } from "react";
-import { IoSearch } from "react-icons/io5";
 import { useDebounce } from "use-debounce";
 
-const CategoryList = () => {
+const StockList = () => {
   const [keyword, setKeyword] = useState("");
   const [value] = useDebounce(keyword, 1000);
-  const { data } = useCategoryQuery();
+  const { data } = useStockQuery();
 
   return (
     <>
@@ -34,7 +32,7 @@ const CategoryList = () => {
           <Input
             value={keyword}
             onChange={(e) => setKeyword(e.target.value)}
-            placeholder="Search Category..."
+            placeholder="Search Stock..."
           />
         </div>
         <Select defaultValue={"asc"}>
@@ -51,8 +49,9 @@ const CategoryList = () => {
         <TableHeader>
           <TableRow>
             <TableHead className="w-[100px]">#</TableHead>
-            <TableHead className="w-[120px] h-[120px]">image</TableHead>
-            <TableHead>name</TableHead>
+            <TableHead>stock</TableHead>
+            <TableHead>shoe</TableHead>
+            <TableHead>size</TableHead>
             <TableHead className="text-right"></TableHead>
           </TableRow>
         </TableHeader>
@@ -60,14 +59,9 @@ const CategoryList = () => {
           {data?.map((val, i) => (
             <TableRow key={val.id}>
               <TableCell className="font-medium">{i + 1}</TableCell>
-              <TableCell>
-                <img
-                  src={val.imgUrl}
-                  alt="img"
-                  className="object-cover aspect-square"
-                />
-              </TableCell>
-              <TableCell>{val.name}</TableCell>
+              <TableCell>{val.stock}</TableCell>
+              <TableCell>{val.shoe.name}</TableCell>
+              <TableCell>{val.size.size}</TableCell>
               <TableCell className="text-right">
                 <ActionDropdown>
                   <p>Edit</p>
@@ -82,4 +76,4 @@ const CategoryList = () => {
   );
 };
 
-export default CategoryList;
+export default StockList;
