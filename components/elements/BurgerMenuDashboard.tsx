@@ -35,8 +35,12 @@ const BurgerMenuDashboard = () => {
       link: "/dashboard/product",
     },
     {
-      name: "Stock",
-      link: "/dashboard/stock",
+      name: "Order",
+      link: "/dashboard/order",
+    },
+    {
+      name: "User",
+      link: "/dashboard/user",
     },
   ];
   return (

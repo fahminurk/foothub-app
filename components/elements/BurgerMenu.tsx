@@ -14,13 +14,17 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
-import { IoMenu } from "react-icons/io5";
+import { IoMenu, IoSearch } from "react-icons/io5";
 import { brands, subcategory } from "@/constant";
 import Link from "next/link";
 import { Input } from "../ui/input";
+import { InputGroup } from "../ui/inputGroup";
+import { useRouter } from "next/navigation";
 
 const BurgerMenu = () => {
   const [open, setOpen] = useState(false);
+  const [keyword, setKeyword] = useState<string>("");
+  const router = useRouter();
   return (
     <Drawer open={open} onOpenChange={setOpen}>
       <DrawerTrigger asChild>
@@ -35,11 +39,18 @@ const BurgerMenu = () => {
       </DrawerTrigger>
       <DrawerContent className="bg-background">
         <DrawerHeader className="relative flex justify-between items-center gap-4">
-          {/* <p className="text-xl font-bold">FOOTHUB</p> */}
-          <Input className="" />
-          <Button className="absolute right-4" size={"sm"}>
-            search
-          </Button>
+          <InputGroup
+            placeholder="Search..."
+            value={keyword}
+            className="w-full"
+            onChange={(e) => setKeyword(e.target.value)}
+            onClick={() => {
+              router.push(`/search/${keyword.replace(" ", "-")}`);
+              setKeyword("");
+              setOpen(false);
+            }}
+            icon={<IoSearch />}
+          />
         </DrawerHeader>
         <DrawerFooter className="gap-0">
           <Accordion type="single" collapsible className="w-full">

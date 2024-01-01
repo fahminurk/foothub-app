@@ -25,7 +25,7 @@ const Footer = () => {
           </p>
         </div>
       </div>
-      <div className="bg-black grid grid-cols-2 md:grid-cols-5 justify-center gap-6 lg:gap-20 text-white p-4 md:p-10  ">
+      <div className="bg-black grid grid-cols-2 md:grid-cols-4 justify-center gap-6 lg:gap-20 text-white p-4 md:p-10  ">
         <div className="flex flex-col gap-4">
           <p className="font-bold text-xl">PRODUCTS</p>
           {products.map((link, i) => (

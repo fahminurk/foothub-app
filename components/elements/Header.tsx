@@ -5,12 +5,16 @@ import { AvatarDropdown } from "./AvatarDropdown";
 import { FiShoppingCart } from "react-icons/fi";
 import { IoSearch } from "react-icons/io5";
 import { useRouter } from "next/navigation";
-import { Input } from "../ui/input";
 import HeaderNavigationMenu from "./HeaderNavigationMenu";
 import BurgerMenu from "./BurgerMenu";
 import { useAuthStore } from "@/store/authStore";
 import { useState } from "react";
 import { InputGroup } from "../ui/inputGroup";
+import {
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
+} from "@/components/ui/hover-card";
 
 const Header = () => {
   const { user } = useAuthStore();
@@ -26,7 +30,7 @@ const Header = () => {
       <HeaderNavigationMenu />
 
       <div className="flex gap-2">
-        <div className=" lg:block">
+        <div className="hidden lg:block">
           <InputGroup
             placeholder="Search..."
             value={keyword}
@@ -38,14 +42,25 @@ const Header = () => {
             icon={<IoSearch />}
           />
         </div>
-        <Button
-          className="rounded-full hidden md:flex lg:hidden"
-          variant="ghost"
-          size="icon"
-        >
-          <IoSearch className="h-5 w-5" />
-        </Button>
-
+        <HoverCard>
+          <HoverCardTrigger>
+            <div className="h-10 w-10 justify-center items-center rounded-full hidden md:flex lg:hidden border hover:bg-gray-100 hover:cursor-pointer">
+              <IoSearch className="h-5 w-5" />
+            </div>
+          </HoverCardTrigger>
+          <HoverCardContent>
+            <InputGroup
+              placeholder="Search..."
+              value={keyword}
+              onChange={(e) => setKeyword(e.target.value)}
+              onClick={() => {
+                router.push(`/search/${keyword.replace(" ", "-")}`);
+                setKeyword("");
+              }}
+              icon={<IoSearch />}
+            />
+          </HoverCardContent>
+        </HoverCard>
         <div>
           {user?.email ? (
             <div className="flex gap-1">
@@ -57,7 +72,7 @@ const Header = () => {
               >
                 <FiShoppingCart className="h-5 w-5" />
               </Button>
-              <AvatarDropdown />
+              {user.email && <AvatarDropdown />}
             </div>
           ) : (
             <Button onClick={() => router.push("/login")}>Login</Button>
