@@ -19,7 +19,7 @@ const Page = ({ params }: { params: { id: string } }) => {
               alt="img"
               className="w-full object-cover col-span-2"
             />
-            <div className="sticky top-16 flex flex-col p-4 h-max gap-3 lg:h-screen lg:p-8 ">
+            <div className="sticky top-16 flex flex-col p-3 h-max gap-3 lg:h-screen lg:p-8 ">
               <SidebarShoeDetails data={data} />
             </div>
           </div>

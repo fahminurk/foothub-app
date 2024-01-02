@@ -23,10 +23,14 @@ const Page = () => {
     <div className="container h-auto flex flex-col gap-4 my-4">
       <div className="sticky top-[68px] z-10 bg-white flex justify-between items-center gap-2 py-2 ">
         <div className="flex flex-col">
-          <p className="text-lg md:text-2xl lg:text-4xl font-bold">SHOES</p>
+          <p className="text-sm md:text-2xl lg:text-4xl font-bold">SHOES</p>
           <div className="flex gap-1 text-sm">
-            <p>{data && data?.length ? `${data?.length}` : "0"}</p>
-            <p>{data && data?.length > 1 ? "items" : "item"}</p>
+            <p className="text-xs md:text-base">
+              {data && data?.length ? `${data?.length}` : "0"}
+            </p>
+            <p className="text-xs md:text-base">
+              {data && data?.length > 1 ? "items" : "item"}
+            </p>
           </div>
         </div>
         <Select
@@ -36,7 +40,7 @@ const Page = () => {
             setOrderBy(value[1]);
           }}
         >
-          <SelectTrigger className="w-[120px] md:w-[180px]">
+          <SelectTrigger className="w-max">
             <SelectValue placeholder="SORT BY" />
           </SelectTrigger>
           <SelectContent>

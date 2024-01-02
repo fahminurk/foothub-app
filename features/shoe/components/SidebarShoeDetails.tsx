@@ -32,11 +32,11 @@ const SidebarShoeDetails: React.FC<{
   return (
     <>
       <div className="flex justify-between items-center">
-        <p>
+        <p className="text-xs md:text-base">
           {data.shoe.brand.name} • {data.shoe.category.name} •{" "}
           {data.shoe.subCategory.name}
         </p>
-        <p className="text-sm">{data.shoe.status}</p>
+        <p className="text-xs md:text-base">{data.shoe.status}</p>
       </div>
       <Separator />
       <div className="my-2">

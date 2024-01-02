@@ -59,7 +59,7 @@ const AddressForm = () => {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <Button variant={"outline"} onClick={() => setOpen(!open)}>
-        Add Address
+        Add
       </Button>
       <DialogContent>
         <DialogHeader>

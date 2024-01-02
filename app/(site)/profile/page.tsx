@@ -12,7 +12,6 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import AddressCard from "@/features/profile/components/AddressCard";
 import AddressForm from "@/features/profile/components/AddressForm";
 import ProfileForm from "@/features/profile/components/ProfileForm";
-import { cn } from "@/lib/utils";
 
 const Page = () => {
   const { data } = useAddressQuery();
@@ -24,13 +23,15 @@ const Page = () => {
           <TabsList className="grid w-full grid-cols-3">
             <TabsTrigger value="account">Account</TabsTrigger>
             <TabsTrigger value="address">Address</TabsTrigger>
-            <TabsTrigger value="order">Orders</TabsTrigger>
+            <TabsTrigger value="order" disabled>
+              Orders
+            </TabsTrigger>
           </TabsList>
           <TabsContent value="account">
             <Card className="lg:p-8">
               <CardHeader>
                 <CardTitle>YOUR DETAILS</CardTitle>
-                <CardDescription>
+                <CardDescription className="text-xs md:text-base">
                   Make changes to your account here. Click save when you&apos;re
                   done.
                 </CardDescription>
@@ -43,7 +44,9 @@ const Page = () => {
           <TabsContent value="address">
             <Card className="lg:p-8">
               <CardHeader className="flex flex-row justify-between items-center">
-                <CardTitle>ADDRESS BOOK</CardTitle>
+                <CardTitle className="text-sm lg:text-base">
+                  ADDRESS BOOK
+                </CardTitle>
                 <AddressForm />
               </CardHeader>
               <CardContent className="space-y-2">

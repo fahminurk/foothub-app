@@ -26,7 +26,7 @@ const Page = () => {
             <div className="flex justify-between">
               <div>
                 <p className="text-2xl md:text-4xl font-bold">YOUR CART</p>
-                <div className="flex gap-1">
+                <div className="flex gap-1 text-sm md:text-base">
                   <p>{totalItem}</p>
                   <p>{totalItem > 1 ? "items" : "item"}</p>
                 </div>
@@ -50,7 +50,7 @@ const Page = () => {
                   className="object-cover"
                 />
                 <div className="relative flex flex-col col-span-2">
-                  <p className="font-bold text-xl truncate">{item.name}</p>
+                  <p className="font-bold md:text-xl ">{item.name}</p>
                   <p className="">Gender: {item.category.name}</p>
                   <p className="">Size: {item.size}</p>
                   <div className="w-full absolute bottom-0 flex justify-end">

@@ -33,13 +33,17 @@ const Page = ({ params }: { params: { slug: string[] } }) => {
     <div className="container flex flex-col gap-4 my-4">
       <div className="sticky top-[68px] z-10  bg-white flex justify-between items-center gap-2 py-2 ">
         <div className="flex flex-col">
-          <div className="flex gap-2 text-lg md:text-2xl lg:text-4xl font-bold">
-            <p> {slug[0].toUpperCase()}</p>
+          <div className="flex gap-1 text-sm md:text-2xl lg:text-4xl font-bold">
+            <p>{slug[0].toUpperCase()}</p>
             {slug[1] && <p>/ {slug[1].toUpperCase()}</p>}
           </div>
           <div className="flex gap-2 text-sm">
-            <p>{data && data?.length ? `${data?.length}` : "0"}</p>
-            <p>{data && data?.length > 1 ? "items" : "item"}</p>
+            <p className="text-xs md:text-base">
+              {data && data?.length ? `${data?.length}` : "0"}
+            </p>
+            <p className="text-xs md:text-base">
+              {data && data?.length > 1 ? "items" : "item"}
+            </p>
           </div>
         </div>
         <Select
@@ -50,7 +54,7 @@ const Page = ({ params }: { params: { slug: string[] } }) => {
             setOrderBy(value[1]);
           }}
         >
-          <SelectTrigger className="w-[180px]">
+          <SelectTrigger className="w-max">
             <SelectValue placeholder="SORT BY" />
           </SelectTrigger>
           <SelectContent>

@@ -75,7 +75,9 @@ const Header = () => {
               {user.email && <AvatarDropdown />}
             </div>
           ) : (
-            <Button onClick={() => router.push("/login")}>Login</Button>
+            <Button onClick={() => router.push("/login")} size={"sm"}>
+              Login
+            </Button>
           )}
         </div>
       </div>
