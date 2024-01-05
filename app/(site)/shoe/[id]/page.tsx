@@ -2,16 +2,17 @@
 import { useShoeDetailQuery } from "@/actions/useShoe";
 import Loader from "@/components/Loader";
 import SidebarShoeDetails from "@/features/shoe/components/SidebarShoeDetails";
+import { notFound } from "next/navigation";
 
 const Page = ({ params }: { params: { id: string } }) => {
   const { id } = params;
-  const { data } = useShoeDetailQuery(id);
-
+  const { data, isFetching } = useShoeDetailQuery(id);
+  // if (!isFetching && !data) notFound();
   return (
     <>
-      {!data ? (
+      {isFetching ? (
         <Loader />
-      ) : (
+      ) : data ? (
         <div className="container flex flex-col gap-4 my-4">
           <div className="grid grid-cols-1 lg:grid-cols-3">
             <img
@@ -24,6 +25,8 @@ const Page = ({ params }: { params: { id: string } }) => {
             </div>
           </div>
         </div>
+      ) : (
+        <div className="flex justify-center items-center h-[80vh]">No item</div>
       )}
     </>
   );

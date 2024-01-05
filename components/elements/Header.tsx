@@ -36,8 +36,10 @@ const Header = () => {
             value={keyword}
             onChange={(e) => setKeyword(e.target.value)}
             onClick={() => {
-              router.push(`/search/${keyword.replace(" ", "-")}`);
-              setKeyword("");
+              if (keyword) {
+                router.push(`/search/${keyword.replace(" ", "-")}`);
+                setKeyword("");
+              }
             }}
             icon={<IoSearch />}
           />

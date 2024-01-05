@@ -90,7 +90,7 @@ const ProfileForm = () => {
               <FormItem>
                 <FormLabel>name </FormLabel>
                 <FormControl>
-                  <Input placeholder="name" type="text" {...field} />
+                  <Input placeholder=" " type="text" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -103,11 +103,7 @@ const ProfileForm = () => {
               <FormItem>
                 <FormLabel>phone</FormLabel>
                 <FormControl>
-                  <Input
-                    placeholder="must start with 08, ex: 08123456789"
-                    type="number"
-                    {...field}
-                  />
+                  <Input placeholder=" " type="number" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>

@@ -15,7 +15,7 @@ const BestOfCarousel = () => {
       grabCursor={true}
       breakpoints={{
         320: {
-          slidesPerView: 1,
+          slidesPerView: 1.2,
           centeredSlides: true,
           spaceBetween: 10,
           //   loop: true,

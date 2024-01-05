@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
+  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -36,9 +37,9 @@ const Page = () => {
     await mutateAsync(values);
   }
   return (
-    <div className="h-screen flex justify-center items-center p-2">
+    <div className="h-[90vh] flex justify-center items-center p-2">
       <div className="max-w-xl w-full flex flex-col gap-2 p-4 md:border">
-        <p className="text-4xl font-bold border-b pb-3">Register</p>
+        <p className="text-4xl font-bold pb-3">Register</p>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
             <FormField
@@ -46,10 +47,10 @@ const Page = () => {
               name="email"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>email</FormLabel>
                   <FormControl>
-                    <Input placeholder="shadcn" type="email" {...field} />
+                    <Input placeholder=" " type="email" {...field} />
                   </FormControl>
+                  <FormLabel>email</FormLabel>
                   <FormMessage />
                 </FormItem>
               )}
@@ -59,10 +60,10 @@ const Page = () => {
               name="password"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>password </FormLabel>
                   <FormControl>
-                    <Input placeholder="password" type="password" {...field} />
+                    <Input placeholder=" " type="password" {...field} />
                   </FormControl>
+                  <FormLabel>password </FormLabel>
                   <FormMessage />
                 </FormItem>
               )}
@@ -72,10 +73,10 @@ const Page = () => {
               name="name"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>name </FormLabel>
                   <FormControl>
-                    <Input placeholder="name" {...field} />
+                    <Input placeholder=" " {...field} />
                   </FormControl>
+                  <FormLabel>name </FormLabel>
                   <FormMessage />
                 </FormItem>
               )}
@@ -85,14 +86,10 @@ const Page = () => {
               name="phone"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>phone</FormLabel>
                   <FormControl>
-                    <Input
-                      placeholder="must start with 08, ex: 08123456789"
-                      type="number"
-                      {...field}
-                    />
+                    <Input placeholder=" " type="number" {...field} />
                   </FormControl>
+                  <FormLabel>phone</FormLabel>
                   <FormMessage />
                 </FormItem>
               )}

@@ -6,13 +6,13 @@ import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
+  FormDescription,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { useRouter } from "next/navigation";
 import { Separator } from "@/components/ui/separator";
 import Link from "next/link";
 import { useLoginMutation } from "@/actions/useAuth";
@@ -36,7 +36,7 @@ const Page = () => {
   return (
     <div className="h-[90vh] flex justify-center items-center p-2">
       <div className="max-w-xl w-full flex flex-col gap-2 p-4 md:border rounded-xl">
-        <p className="text-4xl font-bold border-b pb-3">Login</p>
+        <p className="text-4xl font-bold pb-3">Login</p>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
             <FormField
@@ -44,10 +44,10 @@ const Page = () => {
               name="email"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>email</FormLabel>
                   <FormControl>
-                    <Input placeholder="shadcn" type="email" {...field} />
+                    <Input type="email" placeholder=" " {...field} />
                   </FormControl>
+                  <FormLabel>email</FormLabel>
                   <FormMessage />
                 </FormItem>
               )}
@@ -57,15 +57,10 @@ const Page = () => {
               name="password"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>password </FormLabel>
                   <FormControl>
-                    <Input
-                      placeholder="password
-                    "
-                      type="password"
-                      {...field}
-                    />
+                    <Input type="password" placeholder=" " {...field} />
                   </FormControl>
+                  <FormLabel>password</FormLabel>
                   <FormMessage />
                 </FormItem>
               )}

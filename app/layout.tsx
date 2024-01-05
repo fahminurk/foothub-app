@@ -5,6 +5,7 @@ import QueryProvider from "@/components/providers/QueryProvider";
 import dynamic from "next/dynamic";
 import { fontSans } from "@/lib/fonts";
 import { cn } from "@/lib/utils";
+import { metadataKeywords } from "@/constant";
 // const Header = dynamic(() => import("@/components/elements/Header"), {
 //   ssr: false,
 // });
@@ -12,6 +13,20 @@ import { cn } from "@/lib/utils";
 export const metadata: Metadata = {
   title: "Foothub",
   description: "Foothub E-commerce app",
+  keywords: metadataKeywords,
+  authors: [{ name: "Fahmi Nurkamil", url: "https://github.com/fahminurk" }],
+  openGraph: {
+    type: "website",
+    title: "Foothub",
+    description: "Foothub E-commerce app",
+    url: "https://foothub.fahminurkamil.tech",
+    siteName: "Foothub",
+    // images: [
+    //   {
+    //     url: "https://i.ibb.co/hKRd9gT/og-porto.jpg",
+    //   },
+    // ],
+  },
 };
 
 export default function RootLayout({

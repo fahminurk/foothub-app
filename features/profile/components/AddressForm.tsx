@@ -73,10 +73,10 @@ const AddressForm = () => {
                 name="title"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>title</FormLabel>
                     <FormControl>
-                      <Input placeholder="title" {...field} />
+                      <Input placeholder=" " {...field} />
                     </FormControl>
+                    <FormLabel>title</FormLabel>
                     <FormMessage />
                   </FormItem>
                 )}
@@ -86,10 +86,10 @@ const AddressForm = () => {
                 name="name"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>name</FormLabel>
                     <FormControl>
-                      <Input placeholder="name" {...field} />
+                      <Input placeholder=" " {...field} />
                     </FormControl>
+                    <FormLabel>name</FormLabel>
                     <FormMessage />
                   </FormItem>
                 )}
@@ -99,14 +99,10 @@ const AddressForm = () => {
                 name="phone"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>phone</FormLabel>
                     <FormControl>
-                      <Input
-                        placeholder="must start with 08, ex: 08123456789"
-                        type="number"
-                        {...field}
-                      />
+                      <Input placeholder=" " type="number" {...field} />
                     </FormControl>
+                    <FormLabel>phone</FormLabel>
                     <FormMessage />
                   </FormItem>
                 )}
@@ -116,10 +112,10 @@ const AddressForm = () => {
                 name="address"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>address</FormLabel>
                     <FormControl>
-                      <Input placeholder="address" {...field} />
+                      <Input placeholder=" " {...field} />
                     </FormControl>
+                    <FormLabel>address</FormLabel>
                     <FormMessage />
                   </FormItem>
                 )}
@@ -129,10 +125,10 @@ const AddressForm = () => {
                 name="addressDetails"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>addressDetails</FormLabel>
                     <FormControl>
-                      <Input placeholder="address details" {...field} />
+                      <Input placeholder=" " {...field} />
                     </FormControl>
+                    <FormLabel>addressDetails</FormLabel>
                     <FormMessage />
                   </FormItem>
                 )}
@@ -142,7 +138,7 @@ const AddressForm = () => {
                 name="province_id"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Province</FormLabel>
+                    {/* <FormLabel>Province</FormLabel> */}
                     <Select
                       onValueChange={field.onChange}
                       defaultValue={field.value}
@@ -172,7 +168,7 @@ const AddressForm = () => {
                 name="city_id"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>City</FormLabel>
+                    {/* <FormLabel>City</FormLabel> */}
                     <Select
                       onValueChange={field.onChange}
                       defaultValue={field.value}
@@ -198,7 +194,7 @@ const AddressForm = () => {
                 control={form.control}
                 name="isPrimary"
                 render={({ field }) => (
-                  <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4 shadow">
+                  <FormItem className="flex flex-row items-center space-x-3 space-y-0 rounded-md border p-4 shadow">
                     <FormControl>
                       <Checkbox
                         checked={field.value}
@@ -206,9 +202,9 @@ const AddressForm = () => {
                       />
                     </FormControl>
 
-                    <FormLabel className="pl-2">
+                    <div className="pl-2 text-xs font-semibold">
                       Use as my default address
-                    </FormLabel>
+                    </div>
                   </FormItem>
                 )}
               />

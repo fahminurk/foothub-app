@@ -45,7 +45,7 @@ export default function Home() {
         </div>
       </div>
       <PromotionBanner />
-      <AdidasBanner />
+      {/* <AdidasBanner /> */}
       <div className="flex flex-col gap-3">
         <div className="text-4xl font-bold">BEST OF</div>
         <BestOfCarousel />

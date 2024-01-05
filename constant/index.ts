@@ -88,3 +88,20 @@ export const BestOfShoe = [
     img: "/shoes/nike-air-force-1'07.webp",
   },
 ];
+
+export const metadataKeywords = [
+  "adidas",
+  "nike",
+  "converse",
+  "football",
+  "basketball",
+  "men",
+  "women",
+  "kid",
+  "Foothub",
+  "Shoes",
+  "ecommerce",
+  "store",
+  "footwear",
+  "shoes store",
+];
