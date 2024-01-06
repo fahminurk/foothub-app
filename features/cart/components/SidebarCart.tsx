@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { formatToIDR } from "@/lib/utils";
 import { useRouter } from "next/navigation";
 import React from "react";
+import { FaArrowRight } from "react-icons/fa";
 
 const SidebarCart: React.FC<{ totalItem: number; subTotal: number }> = ({
   totalItem,
@@ -29,7 +30,14 @@ const SidebarCart: React.FC<{ totalItem: number; subTotal: number }> = ({
           <p>{formatToIDR(subTotal)}</p>
         </div>
       </div>
-      <Button onClick={() => router.push("/checkout")}>CHECKOUT</Button>
+      <Button
+        className="w-full"
+        variant={"secondary"}
+        onClick={() => router.push("/checkout")}
+      >
+        CHECKOUT
+        <FaArrowRight />
+      </Button>
     </>
   );
 };

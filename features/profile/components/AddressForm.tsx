@@ -27,44 +27,68 @@ import {
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { useCityQuery, useProvinceQuery } from "@/actions/useProvince";
-import { useAddAddressMutation } from "@/actions/useAddress";
+import {
+  useAddAddressMutation,
+  useUpdateAddressMutation,
+} from "@/actions/useAddress";
 import { addressSchema } from "@/schema";
+import { FaArrowRight } from "react-icons/fa";
+import { TAddress } from "@/types";
 
-const AddressForm = () => {
+interface AddressFormProps {
+  val?: TAddress;
+  type: "UPDATE" | "ADD";
+}
+
+const AddressForm: React.FC<AddressFormProps> = ({ val, type }) => {
   const [open, setOpen] = React.useState(false);
   const { data: provinces } = useProvinceQuery();
-  const { mutateAsync, isPending } = useAddAddressMutation();
+  const { mutateAsync: addAddress, isPending: addPending } =
+    useAddAddressMutation();
+  const { mutateAsync: updateAddress, isPending: updatePending } =
+    useUpdateAddressMutation();
 
   const form = useForm<z.infer<typeof addressSchema>>({
     resolver: zodResolver(addressSchema),
     defaultValues: {
-      name: "",
-      title: "",
-      phone: "",
-      address: "",
-      addressDetails: "",
-      city_id: "",
-      province_id: "",
-      isPrimary: false,
+      name: val?.name || "",
+      title: val?.title || "",
+      phone: val?.phone || "",
+      address: val?.address || "",
+      addressDetails: val?.addressDetails || "",
+      city_id: val?.city_id || "",
+      province_id: val?.city.province_id || "",
+      isPrimary: val?.isPrimary || false,
     },
   });
 
-  const { data: cities } = useCityQuery(form.watch("province_id"));
+  const { data: cities } = useCityQuery(
+    form.watch("province_id") || val?.city.province_id
+  );
 
   async function onSubmit(values: z.infer<typeof addressSchema>) {
-    await mutateAsync(values);
+    if (type === "ADD") {
+      await addAddress(values);
+    } else {
+      await updateAddress({ id: val?.id as number, ...values });
+    }
+    form.reset();
     setOpen(false);
   }
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <Button variant={"outline"} onClick={() => setOpen(!open)}>
-        Add
+      <Button
+        size={val && "xs"}
+        variant={"outline"}
+        onClick={() => setOpen(!open)}
+      >
+        {type === "UPDATE" ? "update" : "Add"}
       </Button>
       <DialogContent>
         <DialogHeader>
           <DialogTitle className="mb-5 text-xl font-bold">
-            ADD ADDRESS
+            {type} ADDRESS
           </DialogTitle>
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">
@@ -209,11 +233,15 @@ const AddressForm = () => {
                 )}
               />
 
-              <div className="flex justify-end">
-                <Button type="submit" disabled={isPending}>
-                  Submit
-                </Button>
-              </div>
+              <Button
+                className="w-full"
+                variant={"secondary"}
+                type="submit"
+                disabled={addPending || updatePending}
+              >
+                SUBMIT
+                <FaArrowRight />
+              </Button>
             </form>
           </Form>
         </DialogHeader>

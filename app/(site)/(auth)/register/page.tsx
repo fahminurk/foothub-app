@@ -6,7 +6,6 @@ import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -18,10 +17,13 @@ import { Separator } from "@/components/ui/separator";
 import Link from "next/link";
 import { useRegisterMutation } from "@/actions/useAuth";
 import { registerSchema } from "@/schema";
+import { FaArrowRight, FaRegEye, FaRegEyeSlash } from "react-icons/fa";
+import { useState } from "react";
+import { cn } from "@/lib/utils";
 
 const Page = () => {
   const { mutateAsync, isPending } = useRegisterMutation();
-  const router = useRouter();
+  const [show, setShow] = useState<boolean>(false);
 
   const form = useForm<z.infer<typeof registerSchema>>({
     resolver: zodResolver(registerSchema),
@@ -45,6 +47,7 @@ const Page = () => {
             <FormField
               control={form.control}
               name="email"
+              disabled={isPending}
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
@@ -58,12 +61,29 @@ const Page = () => {
             <FormField
               control={form.control}
               name="password"
+              disabled={isPending}
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
-                    <Input placeholder=" " type="password" {...field} />
+                    <Input
+                      type={show ? "text" : "password"}
+                      placeholder=" "
+                      {...field}
+                    />
                   </FormControl>
-                  <FormLabel>password </FormLabel>
+                  <Button
+                    onClick={() => setShow(!show)}
+                    type="button"
+                    className={
+                      (cn(""),
+                      form.formState.errors.password
+                        ? "top-2 absolute right-3"
+                        : "absolute right-3 top-1/2 -translate-y-1/2")
+                    }
+                  >
+                    {show ? <FaRegEye /> : <FaRegEyeSlash />}
+                  </Button>
+                  <FormLabel>password</FormLabel>
                   <FormMessage />
                 </FormItem>
               )}
@@ -71,6 +91,7 @@ const Page = () => {
             <FormField
               control={form.control}
               name="name"
+              disabled={isPending}
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
@@ -84,6 +105,7 @@ const Page = () => {
             <FormField
               control={form.control}
               name="phone"
+              disabled={isPending}
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
@@ -94,15 +116,21 @@ const Page = () => {
                 </FormItem>
               )}
             />
-            <Button type="submit" disabled={isPending}>
-              Register
+            <Button
+              className="w-full"
+              variant={"secondary"}
+              type="submit"
+              disabled={isPending}
+            >
+              REGISTER
+              <FaArrowRight />
             </Button>
           </form>
         </Form>
-        <Separator />
+        <Separator className="mt-4" />
         <div className="flex text-sm font-semibold justify-center gap-2">
           <p className="">Already have an account?</p>
-          <Link href={"/login"}>
+          <Link href="/login">
             <p className="text-blue-700 hover:underline">Login</p>
           </Link>
         </div>

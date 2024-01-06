@@ -18,6 +18,7 @@ import { ChangeEventHandler, useRef, useState } from "react";
 import { toast } from "sonner";
 import { profileSchema } from "@/schema";
 import { useUpdateProfileMutation } from "@/actions/useProfile";
+import { FaArrowRight } from "react-icons/fa";
 
 const ProfileForm = () => {
   const user = useAuthStore().user;
@@ -109,8 +110,14 @@ const ProfileForm = () => {
               </FormItem>
             )}
           />
-          <Button type="submit" disabled={isPending}>
-            Save
+          <Button
+            className="w-full"
+            variant={"secondary"}
+            type="submit"
+            disabled={isPending}
+          >
+            SAVE
+            <FaArrowRight />
           </Button>
         </form>
       </Form>

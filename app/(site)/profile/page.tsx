@@ -15,6 +15,7 @@ import ProfileForm from "@/features/profile/components/ProfileForm";
 
 const Page = () => {
   const { data } = useAddressQuery();
+  console.log(data);
 
   return (
     <AuthenticatedRoute>
@@ -47,14 +48,17 @@ const Page = () => {
                 <CardTitle className="text-sm lg:text-base">
                   ADDRESS BOOK
                 </CardTitle>
-                <AddressForm />
+                <AddressForm type="ADD" />
               </CardHeader>
               <CardContent className="space-y-2">
-                {data?.map((val) => (
-                  <AddressCard key={val.id} val={val} />
-                ))}
+                {data?.length ? (
+                  data.map((val) => <AddressCard key={val.id} val={val} />)
+                ) : (
+                  <div className="h-52 flex items-center justify-center">
+                    No Address
+                  </div>
+                )}
               </CardContent>
-              <CardContent className="space-y-2">{/*  */}</CardContent>
             </Card>
           </TabsContent>
         </Tabs>

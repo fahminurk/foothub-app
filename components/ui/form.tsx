@@ -99,7 +99,7 @@ const FormLabel = React.forwardRef<
         text-xs peer-placeholder-shown:text-base
         peer-placeholder-shown:top-1/2 top-3
         transition-all bg-wite font-bold peer-placeholder-shown:font-normal`,
-        error && "text-destructive peer-placeholder-shown:top-1/3",
+        error && " peer-placeholder-shown:top-1/3",
         className
       )}
       htmlFor={formItemId}

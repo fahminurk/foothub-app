@@ -71,7 +71,11 @@ const Page = () => {
                     >
                       -
                     </Button>
-                    <Input className="rounded-none w-9" value={item.qty} />
+                    <Input
+                      className="rounded-none w-10 h-10"
+                      value={item.qty}
+                      disabled
+                    />
                     <Button
                       disabled={
                         item.qty ===

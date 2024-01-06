@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { useAuthStore } from "@/store/authStore";
 import { useCartStore } from "@/store/cartStore";
 import { toast } from "sonner";
+import { FaArrowRight } from "react-icons/fa";
 
 const SidebarShoeDetails: React.FC<{
   data: TShoeDetails;
@@ -79,11 +80,13 @@ const SidebarShoeDetails: React.FC<{
       <Separator />
       <div className="pt-2 w-full">
         <Button
-          disabled={!user?.email || !data.sizeAndStock.length}
+          variant={"secondary"}
+          disabled={!user?.email || !data.sizeAndStock.length || !size}
           className="w-full disabled:cursor-not-allowed"
           onClick={() => handleCart(data.shoe)}
         >
           ADD TO CART
+          <FaArrowRight />
         </Button>
         {!user?.email && (
           <p className="text-center text-xs text-red-400 py-2">

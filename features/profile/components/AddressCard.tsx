@@ -3,6 +3,9 @@ import { cn } from "@/lib/utils";
 import { TAddress } from "@/types";
 import React from "react";
 import { BsCheck2 } from "react-icons/bs";
+import AddressForm from "./AddressForm";
+import DeleteAlert from "@/components/deleteAlert";
+import { useDeleteAddressMutation } from "@/actions/useAddress";
 
 type AddressCardProps = {
   val: TAddress;
@@ -17,24 +20,25 @@ const AddressCard: React.FC<AddressCardProps> = ({
   selectedAddress,
   setSelectedAddress,
 }) => {
+  const { mutateAsync, isPending } = useDeleteAddressMutation();
   return (
     <div
       key={val.id}
       onClick={() => setSelectedAddress && setSelectedAddress(val)}
       className={cn(
-        "grid grid-cols-3 p-2 gap-1 rounded-xl border cursor-pointer",
-        selectedAddress?.id === val.id && "bg-gray-100"
+        "grid grid-cols-3 p-2 gap-1 rounded-lg border cursor-pointer",
+        selectedAddress?.id === val.id && "border-black"
       )}
     >
       <div className="flex justify-center items-center gap-2 border-r-2 md:text-xl">
         {selectedAddress?.id === val.id && (
-          <div className="">
+          <div>
             <BsCheck2 />
           </div>
         )}
 
         <div className="flex flex-col items-center">
-          <p className="font-bold">{val.title}</p>
+          <p className="font-bold">{val.title.toUpperCase()}</p>
           {val.isPrimary && <p className="text-sm">(default)</p>}
         </div>
       </div>
@@ -46,10 +50,15 @@ const AddressCard: React.FC<AddressCardProps> = ({
         </p>
         <p>{val.phone}</p>
         <div className="flex justify-end gap-1">
-          <Button size={"xs"}>update</Button>
-          <Button size={"xs"} variant={"destructive"}>
+          <AddressForm type="UPDATE" val={val} />
+          <DeleteAlert
+            id={val.id}
+            mutateAsync={mutateAsync}
+            isPending={isPending}
+          />
+          {/* <Button size={"xs"} variant={"destructive"}>
             delete
-          </Button>
+          </Button> */}
         </div>
       </div>
     </div>
