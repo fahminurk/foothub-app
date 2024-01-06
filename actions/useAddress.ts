@@ -10,6 +10,7 @@ import { AxiosError } from "axios";
 import { toast } from "sonner";
 
 type TVariables = {
+  id?: number;
   name: string;
   title: string;
   phone: string;
@@ -42,4 +43,35 @@ export const useAddAddressMutation = () => {
       },
     }
   );
+};
+
+export const useUpdateAddressMutation = () => {
+  const queryClient = useQueryClient();
+  return useMutation<any, AxiosError<{ message: string }>, TVariables, unknown>(
+    {
+      mutationFn: (values) =>
+        api.patch("/address/" + values.id, values).then((res) => res.data),
+      onSuccess: () => {
+        queryClient.invalidateQueries({ queryKey: ["address"] });
+        toast.success("successfully updated address");
+      },
+      onError: (error) => {
+        toast.error(error.response?.data.message);
+      },
+    }
+  );
+};
+
+export const useDeleteAddressMutation = () => {
+  const queryClient = useQueryClient();
+  return useMutation<any, AxiosError<{ message: string }>, number, unknown>({
+    mutationFn: (id) => api.delete("/address/" + id).then((res) => res.data),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["address"] });
+      toast.success("successfully deleted address");
+    },
+    onError: (error) => {
+      toast.error(error.response?.data.message);
+    },
+  });
 };

@@ -15,7 +15,9 @@ export const useProvinceQuery = (): UseQueryResult<TProvince[], Error> => {
   });
 };
 
-export const useCityQuery = (id: string): UseQueryResult<TCity[], Error> => {
+export const useCityQuery = (
+  id: string | undefined
+): UseQueryResult<TCity[], Error> => {
   return useQuery<TCity[], Error>({
     queryKey: ["cities", id],
     queryFn: () => api.get("/cities/" + id).then((res) => res.data),
